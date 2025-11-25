@@ -1390,7 +1390,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0416981, y: 0.6890005, z: -10}
+  m_LocalPosition: {x: -1.4967703, y: -0.049999524, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1585,6 +1585,11 @@ GameObject:
 --- !u!1 &766191529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8614992590106910983, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+  m_PrefabInstance: {fileID: 4746988917544986174}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &766191535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
   m_PrefabInstance: {fileID: 4746988917544986174}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &774202333
@@ -2292,7 +2297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17.000183, y: -50.00006}
+  m_AnchoredPosition: {x: -17.000122, y: -50.00006}
   m_SizeDelta: {x: 568.3597, y: 87.677}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1109381940
@@ -3572,7 +3577,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0416981, y: 0.6890005, z: -10}
+  m_LocalPosition: {x: -1.4967703, y: -0.049999524, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3800,6 +3805,7 @@ GameObject:
   - component: {fileID: 1738022907}
   - component: {fileID: 1738022906}
   - component: {fileID: 1738022908}
+  - component: {fileID: 1738022909}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3823,11 +3829,11 @@ MonoBehaviour:
   MonoliumCount: 0
   maxHealth: 500
   dashForce: 50
-  dashDuration: 0.15
-  dashCooldown: 1
+  dashDuration: 0.25
+  dashCooldown: 0.6
   bulletPrefab: {fileID: 7082029783311075945, guid: 652570c97187b5b46b2eb61d4a4a1111, type: 3}
   bulletSpeed: 50
-  speed: 20
+  speed: 24
   rb: {fileID: 1738022907}
 --- !u!212 &1738022904
 SpriteRenderer:
@@ -3873,7 +3879,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d011ad825dc8bc24ca7c1557ae0c9332, type: 3}
+  m_Sprite: {fileID: 9208749144082335142, guid: f35010711a460794c95ad5406d527763, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3893,8 +3899,8 @@ Transform:
   m_GameObject: {fileID: 1738022902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9771, y: 0.689, z: 0}
-  m_LocalScale: {x: 2.6208313, y: 2.6089435, z: 1}
+  m_LocalPosition: {x: -1.3712, y: -0.05, z: 0}
+  m_LocalScale: {x: 5.0761104, y: 7.534787, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3933,17 +3939,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.000000059604645, y: -0.018369496}
+  m_Offset: {x: 0.009733677, y: -0.01902461}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.07, y: 0.58}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.8817371, y: 1.918476}
+  m_Size: {x: 1.0576265, y: 0.53573513}
   m_EdgeRadius: 0
 --- !u!50 &1738022907
 Rigidbody2D:
@@ -3995,6 +4001,18 @@ MonoBehaviour:
   AstroStriderPrefab: {fileID: 736978574}
   AstroStriderCooldown: 10
   AstroStriderTimer: 0
+--- !u!114 &1738022909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738022902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83a52b728598954eaf572d0f248401e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1788009568
 GameObject:
   m_ObjectHideFlags: 0
@@ -59873,6 +59891,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2242738733799243246, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1738022905}
+    - target: {fileID: 2242738733799243246, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 766191535}
     - target: {fileID: 8614992590106910983, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_Name
       value: AstroTrooper

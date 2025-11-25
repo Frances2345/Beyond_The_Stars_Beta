@@ -175,11 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e782771d512b96408ea03020b8d17ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 75
-  moveSpeed: 10
+  maxHealth: 100
+  scoreValue: 100
+  moveSpeed: 16
   initialWaitTime: 2
-  visionRange: 25.9
-  dashRange: 4
-  dashSpeed: 12
-  dashDuration: 0.25
+  visionRange: 70
+  dashRange: 40
+  dashSpeed: 20
+  dashDuration: 2.5
   dashCooldown: 1
