@@ -36,7 +36,6 @@ public class Player1 : MonoBehaviour, IDamageable
 
     public bool IsAlive => currentHealth > 0;
 
-    [Header("Health Pack System")]
     [SerializeField] private int maxHealthPacks = 3;
     [SerializeField] private float healthRegenAmount = 150f;
     [SerializeField] private float regenCooldown = 20f;
@@ -114,12 +113,6 @@ public class Player1 : MonoBehaviour, IDamageable
         inputs.Player.Sprint.performed += OnDash;
 
         inputs.Player.Fire.performed += OnFire;
-        inputs.Player.Interact.performed += OnHeal;
-    }
-
-    private void OnHeal(InputAction.CallbackContext context)
-    {
-        UseHealthPack();
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -167,8 +160,6 @@ public class Player1 : MonoBehaviour, IDamageable
 
         inputs.Player.Sprint.performed -= OnDash;
         inputs.Player.Fire.performed -= OnFire;
-        inputs.Player.Interact.performed -= OnHeal;
-
         inputs.Disable();
     }
 
@@ -217,9 +208,24 @@ public class Player1 : MonoBehaviour, IDamageable
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            UseHealthPack();
+        }
+    }
+
     public void UseHealthPack()
     {
         if (!IsAlive) return;
+
+        if (currentHealth > 350f)
+        {
+            Debug.Log("Vida alta. No se necesita Health Pack, ya que la curación se desperdiciaría.");
+            return;
+        }
+
         if (currentHealthPacks > 0)
         {
             currentHealthPacks--;
@@ -245,9 +251,7 @@ public class Player1 : MonoBehaviour, IDamageable
             if (currentHealthPacks < maxHealthPacks)
             {
                 currentHealthPacks++;
-
                 OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
-
                 Debug.Log("Health Pack recargado automáticamente. Total: " + currentHealthPacks);
             }
         }
