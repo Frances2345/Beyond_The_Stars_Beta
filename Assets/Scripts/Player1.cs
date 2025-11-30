@@ -8,6 +8,9 @@ public class Player1 : MonoBehaviour, IDamageable
     public static Player1 Instance { get; private set; }
 
     public event Action<float> OnHealthChanged;
+    public event Action<int, int> OnMonoliumCountChanged;
+    public event Action<int, int> OnHealthPackChanged;
+    public event Action OnDied;
 
     public InputSystem_Actions inputs;
     private Vector2 moveInput;
@@ -32,7 +35,13 @@ public class Player1 : MonoBehaviour, IDamageable
     }
 
     public bool IsAlive => currentHealth > 0;
-    public event Action OnDied;
+
+    [Header("Health Pack System")]
+    [SerializeField] private int maxHealthPacks = 3;
+    [SerializeField] private float healthRegenAmount = 150f;
+    [SerializeField] private float regenCooldown = 20f;
+    private int currentHealthPacks;
+    public int MaxHealthPacks => maxHealthPacks;
 
     public float dashForce = 25f;
     public float dashDuration = 0.15f;
@@ -74,6 +83,9 @@ public class Player1 : MonoBehaviour, IDamageable
     private void Start()
     {
         currentHealth = maxHealth;
+        currentHealthPacks = maxHealthPacks;
+        OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
+        StartCoroutine(RegenerateHealthPack());
     }
 
     public void TakeDamage(float amount)
@@ -102,6 +114,12 @@ public class Player1 : MonoBehaviour, IDamageable
         inputs.Player.Sprint.performed += OnDash;
 
         inputs.Player.Fire.performed += OnFire;
+        inputs.Player.Interact.performed += OnHeal;
+    }
+
+    private void OnHeal(InputAction.CallbackContext context)
+    {
+        UseHealthPack();
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -131,7 +149,6 @@ public class Player1 : MonoBehaviour, IDamageable
             MovementController();
         }
     }
-
     public void MovementController()
     {
         if (rb == null)
@@ -150,6 +167,7 @@ public class Player1 : MonoBehaviour, IDamageable
 
         inputs.Player.Sprint.performed -= OnDash;
         inputs.Player.Fire.performed -= OnFire;
+        inputs.Player.Interact.performed -= OnHeal;
 
         inputs.Disable();
     }
@@ -199,11 +217,48 @@ public class Player1 : MonoBehaviour, IDamageable
         }
     }
 
+    public void UseHealthPack()
+    {
+        if (!IsAlive) return;
+        if (currentHealthPacks > 0)
+        {
+            currentHealthPacks--;
+
+            float newHealth = currentHealth + healthRegenAmount;
+            currentHealth = Mathf.Min(newHealth, maxHealth);
+            OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
+
+            Debug.Log("Health Pack usado (E). Curación: " + healthRegenAmount + ". Stacks restantes: " + currentHealthPacks);
+        }
+        else
+        {
+            Debug.Log("No quedan Health Packs disponibles.");
+        }
+    }
+
+    private IEnumerator RegenerateHealthPack()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenCooldown);
+
+            if (currentHealthPacks < maxHealthPacks)
+            {
+                currentHealthPacks++;
+
+                OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
+
+                Debug.Log("Health Pack recargado automáticamente. Total: " + currentHealthPacks);
+            }
+        }
+    }
+
     public void CollectMonolium()
     {
         if (MonoliumCount < MaxMonolium)
         {
             MonoliumCount++;
+            OnMonoliumCountChanged?.Invoke(MonoliumCount, MaxMonolium);
             Debug.Log("Monolium Recolectado. " + MonoliumCount + " de " + MaxMonolium + " .");
 
             if (MonoliumCount == MaxMonolium)
@@ -212,8 +267,6 @@ public class Player1 : MonoBehaviour, IDamageable
             }
         }
     }
-
-
     public void Die()
     {
         currentHealth = 0;
