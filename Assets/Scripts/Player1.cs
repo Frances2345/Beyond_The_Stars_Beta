@@ -56,6 +56,7 @@ public class Player1 : MonoBehaviour, IDamageable
     public float speed = 12f;
     public Rigidbody2D rb;
 
+    private AudioSource movementAudio;
 
     private void Awake()
     {
@@ -71,6 +72,14 @@ public class Player1 : MonoBehaviour, IDamageable
             rb = GetComponent<Rigidbody2D>();
         }
         inputs = new InputSystem_Actions();
+
+        movementAudio = GetComponent<AudioSource>();
+        if(movementAudio == null)
+        {
+            Debug.LogError("Se necesita un audiosource");
+        }
+        movementAudio.loop = true;
+
 
         playerCollider = GetComponent<Collider2D>();
         if (playerCollider == null)
@@ -107,8 +116,12 @@ public class Player1 : MonoBehaviour, IDamageable
     {
         inputs.Enable();
         inputs.Player.Move.started += OnMove;
+        inputs.Player.Move.started += OnMoveStart;
+
         inputs.Player.Move.performed += OnMove;
+
         inputs.Player.Move.canceled += OnMove;
+        inputs.Player.Move.canceled += OnMoveStop;
 
         inputs.Player.Sprint.performed += OnDash;
 
@@ -118,6 +131,22 @@ public class Player1 : MonoBehaviour, IDamageable
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    private void OnMoveStart(InputAction.CallbackContext context)
+    {
+        if(movementAudio != null && !movementAudio.isPlaying)
+        {
+            movementAudio.Play();
+        }
+    }
+
+    private void OnMoveStop(InputAction.CallbackContext context)
+    {
+        if(movementAudio != null)
+        {
+            movementAudio.Stop();
+        }
     }
 
     private void OnDash(InputAction.CallbackContext context)
@@ -154,13 +183,23 @@ public class Player1 : MonoBehaviour, IDamageable
 
     private void OnDisable()
     {
-        inputs.Player.Move.canceled -= OnMove;
-        inputs.Player.Move.performed -= OnMove;
         inputs.Player.Move.started -= OnMove;
+        inputs.Player.Move.started -= OnMoveStart;
+
+        inputs.Player.Move.performed -= OnMove;
+
+        inputs.Player.Move.canceled -= OnMove;
+        inputs.Player.Move.canceled -= OnMoveStop;
+
 
         inputs.Player.Sprint.performed -= OnDash;
         inputs.Player.Fire.performed -= OnFire;
         inputs.Disable();
+
+        if(movementAudio != null)
+        {
+            movementAudio.Stop();
+        }
     }
 
     private IEnumerator PerformDash(Vector2 direction)
