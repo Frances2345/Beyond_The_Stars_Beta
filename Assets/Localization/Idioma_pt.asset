@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: EM BREVE NO JOGO
     m_Metadata:
       m_Items: []
+  - m_Id: 310391163064320
+    m_Localized: SELECIONE SEU JOGADOR
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

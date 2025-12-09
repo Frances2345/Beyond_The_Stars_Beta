@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: PROXIMAMENTE EN EL JUEGO
     m_Metadata:
       m_Items: []
+  - m_Id: 310391163064320
+    m_Localized: SELECCIONA A TU JUGADOR
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

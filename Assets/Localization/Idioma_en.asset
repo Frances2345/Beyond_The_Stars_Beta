@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: COMING SOON TO THE GAME
     m_Metadata:
       m_Items: []
+  - m_Id: 310391163064320
+    m_Localized: SELECT YOUR PLAYER
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
