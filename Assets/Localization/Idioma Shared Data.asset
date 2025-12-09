@@ -75,6 +75,14 @@ MonoBehaviour:
     m_Key: LANGUAGE
     m_Metadata:
       m_Items: []
+  - m_Id: 314862093996032
+    m_Key: MONOLIUM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 314862265962496
+    m_Key: SCORE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

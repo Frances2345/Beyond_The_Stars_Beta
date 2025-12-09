@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2958842662912
-    m_Localized: COMANDANTES MURPHY
+    m_Localized: COMANDANTE MURPHY
     m_Metadata:
       m_Items: []
   - m_Id: 3190536015872
@@ -76,6 +76,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 311404574019584
     m_Localized: IDIOMA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 314862093996032
+    m_Localized: MONOLIUM RECOLECTADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 314862265962496
+    m_Localized: PUNTOS
     m_Metadata:
       m_Items: []
   references:

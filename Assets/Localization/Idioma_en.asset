@@ -78,6 +78,14 @@ MonoBehaviour:
     m_Localized: LANGUAGE
     m_Metadata:
       m_Items: []
+  - m_Id: 314862093996032
+    m_Localized: MONOLIUM COLLECTED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 314862265962496
+    m_Localized: 'POINTS:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
