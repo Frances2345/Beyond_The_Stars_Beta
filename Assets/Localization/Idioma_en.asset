@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Idioma_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 1b6edea0c1ca8a349b5a028539682da6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 168208633856
+    m_Localized: BEYOND THE STARS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1335416328192
+    m_Localized: PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552777744384
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1815638970368
+    m_Localized: QUIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2297581277184
+    m_Localized: PRESS "E" TO HEAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2958842662912
+    m_Localized: COMMANDER MURPHY
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
