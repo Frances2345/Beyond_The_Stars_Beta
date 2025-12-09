@@ -40,7 +40,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3190536015872
-    m_Key: New Entry
+    m_Key: HISTORY BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298836270780416
+    m_Key: RUSH BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299408977825792
+    m_Key: MODES TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299555107377152
+    m_Key: TITAN BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299683155283968
+    m_Key: TUTORIAL BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299964672774144
+    m_Key: BACK BUTTON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299966388244480
+    m_Key: TRYCATCH
     m_Metadata:
       m_Items: []
   m_Metadata:

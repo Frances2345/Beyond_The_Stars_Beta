@@ -42,6 +42,34 @@ MonoBehaviour:
     m_Localized: COMANDANTES MURPHY
     m_Metadata:
       m_Items: []
+  - m_Id: 3190536015872
+    m_Localized: HISOTRIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298836270780416
+    m_Localized: RUSH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299408977825792
+    m_Localized: MODOS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299555107377152
+    m_Localized: TITAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299683155283968
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299964672774144
+    m_Localized: ATRAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 299966388244480
+    m_Localized: PROXIMAMENTE EN EL JUEGO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
