@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 168208633856
-    m_Localized: "AL\xC9M DAS ESTRELAS"
+    m_Localized: ALEM DAS ESTRELAS
     m_Metadata:
       m_Items: []
   - m_Id: 1335416328192
@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1552777744384
-    m_Localized: "CR\xC9DITOS"
+    m_Localized: CREDITOS
     m_Metadata:
       m_Items: []
   - m_Id: 1815638970368
