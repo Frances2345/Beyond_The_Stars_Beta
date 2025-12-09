@@ -74,6 +74,10 @@ MonoBehaviour:
     m_Localized: SELECT YOUR PLAYER
     m_Metadata:
       m_Items: []
+  - m_Id: 311404574019584
+    m_Localized: LANGUAGE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

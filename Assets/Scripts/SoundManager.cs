@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     
     public AudioClip clickSoundClip;
     public AudioClip quitSoundClip;
+    public AudioClip blockSoundClip;
 
     public AudioClip menuMusicClip;
 
@@ -56,6 +57,16 @@ public class SoundManager : MonoBehaviour
         if (quitSoundClip != null)
         {
             audioSource.PlayOneShot(quitSoundClip);
+        }
+
+    }
+
+    public void PlayBlockSound()
+    {
+        AudioSource audioSource = GetTemporaryAudioSource();
+        if (blockSoundClip != null)
+        {
+            audioSource.PlayOneShot(blockSoundClip);
         }
 
     }

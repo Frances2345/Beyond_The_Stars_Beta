@@ -780,6 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSoundClip: {fileID: 8300000, guid: 40ce04f71af9a6646afabd3821bd4448, type: 3}
   quitSoundClip: {fileID: 8300000, guid: 1899f3c4ae1b01c4bb8252d8e25e5b51, type: 3}
+  blockSoundClip: {fileID: 8300000, guid: 482e535361e13ae4da218fc3f9bdc103, type: 3}
   menuMusicClip: {fileID: 8300000, guid: b950ef8163cadc14e82c33ca5e7873c7, type: 3}
 --- !u!4 &502261372
 Transform:
@@ -1007,135 +1008,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651191276}
   m_CullTransparentMesh: 1
---- !u!1 &792364794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 792364796}
-  - component: {fileID: 792364795}
-  m_Layer: 0
-  m_Name: Fear - Instrumental Mix (Undertale)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &792364795
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792364794}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: b950ef8163cadc14e82c33ca5e7873c7, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.515
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &792364796
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792364794}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &808702932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,7 +1122,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -4.899994, y: -7.200012}
-  m_SizeDelta: {x: 146.1442, y: 35}
+  m_SizeDelta: {x: 183.3852, y: 39.1379}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1026644611
 MonoBehaviour:
@@ -2278,7 +2150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sALIR
+  m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
   m_sharedMaterial: {fileID: 4699349172679935452, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
@@ -2745,7 +2617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: jUGAR
+  m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
   m_sharedMaterial: {fileID: 4699349172679935452, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
@@ -2875,6 +2747,7 @@ GameObject:
   - component: {fileID: 1817833147}
   - component: {fileID: 1817833149}
   - component: {fileID: 1817833148}
+  - component: {fileID: 1817833150}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2921,7 +2794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Idioma
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
   m_sharedMaterial: {fileID: 4699349172679935452, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
@@ -3000,6 +2873,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817833146}
   m_CullTransparentMesh: 1
+--- !u!114 &1817833150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817833146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:1b6edea0c1ca8a349b5a028539682da6
+    m_TableEntryReference:
+      m_KeyId: 311404574019584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1817833148}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1875580361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,7 +3488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Creditos
+  m_text: CREDITS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
   m_sharedMaterial: {fileID: 4699349172679935452, guid: 839b0682e33b7d2499bf8adb41078147, type: 2}
@@ -3701,6 +3614,5 @@ SceneRoots:
   - {fileID: 1321298554}
   - {fileID: 1146346832}
   - {fileID: 207683460}
-  - {fileID: 792364796}
   - {fileID: 1233261699}
   - {fileID: 502261372}
