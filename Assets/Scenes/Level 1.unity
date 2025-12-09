@@ -1977,7 +1977,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4681019, y: -0.049999047, z: -10}
+  m_LocalPosition: {x: -0.0765647, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4414,7 +4414,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4681019, y: -0.049999047, z: -10}
+  m_LocalPosition: {x: -0.0765647, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4741,8 +4741,8 @@ Transform:
   m_GameObject: {fileID: 1738022902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3712, y: -0.05, z: 0}
-  m_LocalScale: {x: 5.0761104, y: 7.534787, z: 1}
+  m_LocalPosition: {x: 0.0203, y: -2.1785, z: 0}
+  m_LocalScale: {x: 1.0083774, y: 1.4943624, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4781,17 +4781,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.009733677, y: -0.01902461}
+  m_Offset: {x: -0.005802393, y: 0.037893772}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.07, y: 0.58}
+    oldSize: {x: 8.916667, y: 4.8333335}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0576265, y: 0.53573513}
+  m_Size: {x: 8.9807415, y: 4.908699}
   m_EdgeRadius: 0
 --- !u!50 &1738022907
 Rigidbody2D:
@@ -4876,7 +4876,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 115
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 3.8198206
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -4986,8 +4986,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.535
+  m_Offset: {x: -0.18642698, y: 0}
+  m_Radius: 2.6106691
 --- !u!1 &1788009568
 GameObject:
   m_ObjectHideFlags: 0
