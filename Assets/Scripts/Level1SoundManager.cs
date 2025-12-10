@@ -1,8 +1,12 @@
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class Level1SoundManager : MonoBehaviour
 {
     public static Level1SoundManager Instance { get; private set; }
+
+
+    public AudioClip LevelMusicClip;
 
     [Header("Clips del Jugador")]
     public AudioClip PlayerHitClip;
@@ -10,10 +14,21 @@ public class Level1SoundManager : MonoBehaviour
     public AudioClip PlayerShootClip;
     public AudioClip PlayerDashClip;
     public AudioClip HealthPackClip;
+
+
+    [Header("Clips Special Trooper")]
+
+    [Header("Clips Stride Trooper")]
+
+    [Header("Clips Astro Trooper")]
+
+    [Header("Clips Extras")]
     public AudioClip MonoliumCollectClip;
     public AudioClip WallDestroyClip;
 
-    private AudioSource _audioSource;
+
+    private AudioSource SFXSource;
+    private AudioSource musicSource;
 
     private void Awake()
     {
@@ -24,20 +39,45 @@ public class Level1SoundManager : MonoBehaviour
         }
         Instance = this;
 
-        _audioSource = gameObject.AddComponent<AudioSource>();
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.loop = true;
+        musicSource.playOnAwake = false;
+        musicSource.volume = 0.8f;
 
-        if (_audioSource == null)
-        {
-            _audioSource = gameObject.AddComponent<AudioSource>();
-        }
+        SFXSource = gameObject.AddComponent<AudioSource>();
+        SFXSource.loop = false;
+        SFXSource.playOnAwake = false;
+        SFXSource.volume = 1f;
+    }
 
+    private void Start()
+    {
+        PlayLevelMusic();
     }
 
     public void PlayClip(AudioClip clip, Vector3 position)
     {
         if (clip != null)
         {
-            _audioSource.PlayOneShot(clip, 0.9f);
+            SFXSource.PlayOneShot(clip, 0.9f);
         }
     }
+
+    public void PlayLevelMusic()
+    {
+        if (LevelMusicClip != null && !musicSource.isPlaying)
+        {
+            musicSource.clip = LevelMusicClip;
+            musicSource.Play();
+        }
+    }
+
+    public void StopLevelMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
+    }
+
 }
