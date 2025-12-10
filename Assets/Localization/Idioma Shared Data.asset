@@ -83,6 +83,14 @@ MonoBehaviour:
     m_Key: SCORE
     m_Metadata:
       m_Items: []
+  - m_Id: 443346376200192
+    m_Key: CONTRIBUITOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 443516182597632
+    m_Key: OWNERS
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
