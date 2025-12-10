@@ -113,6 +113,11 @@ public class BossController : MonoBehaviour, IDamageable
             return;
         }
 
+        if (BossLevelSoundManager.Instance != null && BossLevelSoundManager.Instance.BossShootClip != null)
+        {
+            BossLevelSoundManager.Instance.PlayBossSFX(BossLevelSoundManager.Instance.BossShootClip);
+        }
+
         Vector3 direction = (player.position - transform.position).normalized;
 
         GameObject bala = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
@@ -140,6 +145,10 @@ public class BossController : MonoBehaviour, IDamageable
 
             if (currentHealth < maxHealth)
             {
+                if (BossLevelSoundManager.Instance != null && BossLevelSoundManager.Instance.BossRoarClip != null)
+                {
+                    BossLevelSoundManager.Instance.PlayBossSFX(BossLevelSoundManager.Instance.BossRoarClip);
+                }
                 currentHealth = Mathf.Min(currentHealth + regenAmount, maxHealth);
             }
         }
@@ -156,6 +165,12 @@ public class BossController : MonoBehaviour, IDamageable
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.AddScore(scoreValue);
+        }
+
+        if (BossLevelSoundManager.Instance != null && BossLevelSoundManager.Instance.BossDeathClip != null)
+        {
+            BossLevelSoundManager.Instance.PlayBossSFX(BossLevelSoundManager.Instance.BossDeathClip);
+            BossLevelSoundManager.Instance.StopMusic();
         }
 
         currentHealth = 0;
