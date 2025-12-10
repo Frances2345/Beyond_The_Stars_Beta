@@ -14,6 +14,7 @@ public class BossLevelSoundManager : MonoBehaviour
 
     [Header("Clips Specialist Trooper")]
     public AudioClip SpecialSound;
+    public AudioClip SpecialDash;
     public AudioClip SpecialDeath;
 
     [Header("Clips Strider Trooper")]

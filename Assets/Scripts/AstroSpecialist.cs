@@ -1,52 +1,141 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class AstroSpecialist : MonoBehaviour
 {
+    [SerializeField] private float maxHealth = 75f;
+    private float currentHealth;
+    public int scoreValue = 100;
+
+    public bool IsAlive => currentHealth > 0;
+    public event Action OnDied;
+
+    private GameObject jugador;
     public Transform player;
+    private Rigidbody2D rb;
+
+    [Header("Chase & Orbit")]
+    public float moveSpeed = 2f;
+    public float initialWaitTime = 2f;
+    public float visionRange = 20f;
 
     public float detectionRadius = 8f;
     public float orbitSpeed = 50f;
     public float orbitDistance = 3f;
 
+    [Header("Dash Settings")]
+    public float dashRange = 4f;
+    public float dashSpeed = 12f;
+    public float dashDuration = 0.25f;
+    public float dashCooldown = 1f;
     public float dashForce = 20f;
-    public float dashDuration = 1.5f;
-    public float dashCooldown = 2f;
 
-    bool isDashing = false;
-    bool canDash = true;
+    private bool isWaiting = true;
+    private float initialTimer = 0f;
 
-    Rigidbody2D rb;
+    private bool isDashing = false;
+    private bool canDash = true;
+    private bool isSoundActive = false;
+
+    private Vector2 dashDirection;
+
+    // ------------------------
+    // CHARGING BOOLEAN
+    // ------------------------
+    public bool IsCharging = false; // <--- MANTENIDO
+    // ------------------------
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+
+        if (Player1.Instance != null)
+        {
+            player = Player1.Instance.transform;
+            jugador = Player1.Instance.gameObject;
+        }
+        else
+        {
+            jugador = GameObject.FindGameObjectWithTag("Player");
+            if (jugador != null) player = jugador.transform;
+
+            if (jugador == null)
+            {
+                Debug.LogWarning("No se encontró el jugador con tag Player");
+                enabled = false;
+            }
+        }
+
+    }
+
+    public void TakeDamage(float amount)
+    {
+        if (!IsAlive) return;
+
+        currentHealth -= amount;
+        if (currentHealth <= 0) Die();
     }
 
     void Update()
     {
-        if (!PlayerInRange())
+        if (player == null || !IsAlive) return;
         {
-            rb.linearVelocity = Vector2.zero;
+            if (isWaiting)
+            {
+                HandleInitialWait();
+                return;
+            }
+        }
+
+        float dist = Vector2.Distance(transform.position, player.position);
+
+        if (dist <= visionRange && !isSoundActive)
+        {
+            isSoundActive = true;
+            PlaySpecialSound();
+        }
+        else if (dist > visionRange && isSoundActive)
+        {
+            isSoundActive = false;
+        }
+
+        if (dist <= dashRange && canDash && !isDashing)
+        {
+            Dash();
             return;
         }
 
         if (!isDashing)
         {
-            OrbitAroundPlayer();
-        }
-
-        if (canDash && !isDashing)
-        {
-            StartDash();
+            // Combinamos ChasePlayer y OrbitAroundPlayer
+            if (dist <= visionRange)
+            {
+                OrbitAroundPlayer(); // Mantenemos la lógica de órbita como movimiento principal en rango.
+            }
+            else
+            {
+                StopMovement(); // Si está fuera de rango
+            }
         }
     }
 
-    bool PlayerInRange()
+    private void PlaySpecialSound()
     {
-        return Vector2.Distance(transform.position, player.position) <= detectionRadius;
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialSound != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialSound, transform.position);
+        }
     }
 
-    void OrbitAroundPlayer()
+    private void HandleInitialWait()
+    {
+        initialTimer += Time.deltaTime;
+        if (initialTimer >= initialWaitTime) isWaiting = false;
+    }
+
+    private void OrbitAroundPlayer()
     {
         Vector2 dir = (transform.position - player.position).normalized;
 
@@ -57,27 +146,79 @@ public class AstroSpecialist : MonoBehaviour
         transform.RotateAround(player.position, Vector3.forward, orbitSpeed * Time.deltaTime);
     }
 
-    void StartDash()
+    private void StopMovement()
     {
-        canDash = false;
-        isDashing = true;
-
-        Vector2 direction = (player.position - transform.position).normalized;
-        rb.linearVelocity = direction * dashForce;
-
-        Invoke("EndDash", dashDuration);
+        rb.linearVelocity = Vector2.zero;
     }
 
-    void EndDash()
+    private void Dash()
     {
+        StartCoroutine(DashCoroutine());
+    }
+
+    private System.Collections.IEnumerator DashCoroutine()
+    {
+        // ------------------------
+        // AQUI INICIA EL DASH
+        // prende el charging
+        // ------------------------
+        IsCharging = true;
+
+        isDashing = true;
+        canDash = false;
+
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialDash != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialDash, transform.position);
+        }
+
+        dashDirection = (player.position - transform.position).normalized;
+
+        float timer = 0f;
+        while (timer < dashDuration)
+        {
+            // Usamos dashSpeed del EnemyChase, asumiendo que es la velocidad final.
+            rb.linearVelocity = dashDirection * dashSpeed;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
         rb.linearVelocity = Vector2.zero;
         isDashing = false;
 
-        Invoke("ResetCooldown", dashCooldown);
+        // ------------------------
+        // AQUI TERMINA EL DASH
+        // apaga el charging
+        // ------------------------
+        IsCharging = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
-    void ResetCooldown()
+    private void OnDrawGizmosSelected()
     {
-        canDash = true;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, visionRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, dashRange);
+    }
+
+    public void Die()
+    {
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(scoreValue);
+        }
+
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialDeath != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialDeath, transform.position);
+        }
+
+        currentHealth = 0;
+        OnDied?.Invoke();
+        Destroy(gameObject);
     }
 }

@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 7149501541657681276}
   - component: {fileID: 5794074480171610880}
   - component: {fileID: 4241511058989990671}
-  - component: {fileID: 8683035028920203961}
-  - component: {fileID: 8895097425687181984}
-  - component: {fileID: 2242738733799243246}
   - component: {fileID: -7509959033511319497}
   - component: {fileID: 631668750949952173}
   m_Layer: 0
@@ -167,63 +164,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8683035028920203961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614992590106910983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a330ccd05cbd2489fa8029a9bb8362, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 45
-  scoreValue: 250
-  bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
-  moveSpeed: 7
-  bulletSpeed: 37
-  fireRate: 1
-  attackRange: 40
-  WaitTime: 2
-  IsShooting: 0
---- !u!114 &8895097425687181984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614992590106910983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e782771d512b96408ea03020b8d17ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 80
-  scoreValue: 100
-  moveSpeed: 12
-  initialWaitTime: 2
-  visionRange: 50
-  dashRange: 20
-  dashSpeed: 50
-  dashDuration: 0.5
-  dashCooldown: 0.38
-  IsCharging: 0
---- !u!114 &2242738733799243246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614992590106910983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b53d57f7b122b34f9de6be955cf8617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &-7509959033511319497
 MonoBehaviour:
   m_ObjectHideFlags: 0

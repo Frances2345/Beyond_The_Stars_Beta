@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2944294992273771610}
   - component: {fileID: 6147026155244457653}
   - component: {fileID: 112891974887885971}
-  - component: {fileID: 918072217343727317}
   - component: {fileID: 1425845632581838058}
+  - component: {fileID: 1443813057388679331}
   m_Layer: 0
   m_Name: AstroStrider
   m_TagString: Enemy
@@ -164,26 +164,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &918072217343727317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741314503951731178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a330ccd05cbd2489fa8029a9bb8362, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  scoreValue: 250
-  bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
-  moveSpeed: 7
-  bulletSpeed: 12
-  fireRate: 2
-  attackRange: 12
-  WaitTime: 0.2
 --- !u!114 &1425845632581838058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,3 +176,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2146ec4e41a558d49b496cd4a85bb48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1443813057388679331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741314503951731178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549708458a364664ebacf31f54c7a8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 400
+  scoreValue: 250
+  bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
+  moveSpeed: 2
+  bulletSpeed: 13
+  fireRate: 2
+  attackRange: 55
+  WaitTime: 2
+  IsShooting: 0

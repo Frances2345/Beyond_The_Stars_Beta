@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 303768824034579493}
   - component: {fileID: 1946789899939432022}
-  - component: {fileID: 2005509839249557489}
   - component: {fileID: 1028960618641792967}
   - component: {fileID: -2368120764104376192}
   - component: {fileID: 7656096809510908097}
@@ -93,27 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2005509839249557489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250332384062263893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e782771d512b96408ea03020b8d17ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  scoreValue: 100
-  moveSpeed: 16
-  initialWaitTime: 2
-  visionRange: 40.1
-  dashRange: 40
-  dashSpeed: 20
-  dashDuration: 5
-  dashCooldown: 0.4
 --- !u!114 &1028960618641792967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,13 +104,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c285592a65ae13409036c8bbb45f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 75
+  scoreValue: 100
   player: {fileID: 0}
+  moveSpeed: 2
+  initialWaitTime: 2
+  visionRange: 20
   detectionRadius: 70
   orbitSpeed: 50
   orbitDistance: 8
-  dashForce: 150
+  dashRange: 4
+  dashSpeed: 12
   dashDuration: 7
   dashCooldown: 5
+  dashForce: 150
+  IsCharging: 0
 --- !u!50 &-2368120764104376192
 Rigidbody2D:
   serializedVersion: 5

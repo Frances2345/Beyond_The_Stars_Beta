@@ -1,4 +1,3 @@
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class Level1SoundManager : MonoBehaviour
@@ -16,6 +15,7 @@ public class Level1SoundManager : MonoBehaviour
 
     [Header("Clips Specialist Trooper")]
     public AudioClip SpecialSound;
+    public AudioClip SpecialDash;
     public AudioClip SpecialDeath;
 
     [Header("Clips Strider Trooper")]
@@ -25,7 +25,7 @@ public class Level1SoundManager : MonoBehaviour
 
     [Header("Clips Astro Trooper")]
     public AudioClip AstroSound;
-    public AudioClip AstrorShoot;
+    public AudioClip AstroShoot;
     public AudioClip AstroDeath;
 
     [Header("Clips Extras")]

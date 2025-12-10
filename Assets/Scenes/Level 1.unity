@@ -2191,7 +2191,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0918788, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.07661429, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5131,12 +5131,13 @@ MonoBehaviour:
   PlayerDashClip: {fileID: 8300000, guid: 47f55937be2068544ab82cc4cc76cad6, type: 3}
   HealthPackClip: {fileID: 8300000, guid: 4ecfa9bf43bec1b438a2d55c067dbb89, type: 3}
   SpecialSound: {fileID: 0}
+  SpecialDash: {fileID: 0}
   SpecialDeath: {fileID: 0}
   StriderSound: {fileID: 0}
   StriderShoot: {fileID: 0}
   StriderDeath: {fileID: 0}
   AstroSound: {fileID: 0}
-  AstrorShoot: {fileID: 0}
+  AstroShoot: {fileID: 0}
   AstroDeath: {fileID: 0}
   MonoliumCollectClip: {fileID: 8300000, guid: 0f71014da8dbf51418206f288457ab1d, type: 3}
   WallDestroyClip: {fileID: 8300000, guid: 23f032b1a6826bd40928cadede5314bc, type: 3}
@@ -5354,7 +5355,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0918788, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.07661429, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
