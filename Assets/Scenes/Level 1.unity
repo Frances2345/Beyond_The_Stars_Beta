@@ -5149,15 +5149,15 @@ MonoBehaviour:
   PlayerShootClip: {fileID: 8300000, guid: 2bb18942666046746b57f3bab9243f1a, type: 3}
   PlayerDashClip: {fileID: 8300000, guid: 47f55937be2068544ab82cc4cc76cad6, type: 3}
   HealthPackClip: {fileID: 8300000, guid: 4ecfa9bf43bec1b438a2d55c067dbb89, type: 3}
-  SpecialSound: {fileID: 0}
-  SpecialDash: {fileID: 0}
-  SpecialDeath: {fileID: 0}
-  StriderSound: {fileID: 0}
-  StriderShoot: {fileID: 0}
-  StriderDeath: {fileID: 0}
-  AstroSound: {fileID: 0}
-  AstroShoot: {fileID: 0}
-  AstroDeath: {fileID: 0}
+  SpecialSound: {fileID: 8300000, guid: 057f5d9673a652c40bca100f7c0686fa, type: 3}
+  SpecialDash: {fileID: 8300000, guid: 5b5bf0dfc7377634dae20d39ba8fecf7, type: 3}
+  SpecialDeath: {fileID: 8300000, guid: 9ca38b1b6a465e949b50000aafb18ca6, type: 3}
+  StriderSound: {fileID: 8300000, guid: 348a9543e5db3c8428c3fbe88e964d47, type: 3}
+  StriderShoot: {fileID: 8300000, guid: bbab21470f2d89a43a8013bdb5844b35, type: 3}
+  StriderDeath: {fileID: 8300000, guid: d2f4e7ade0f73fd4887dc4a222e84795, type: 3}
+  AstroSound: {fileID: 8300000, guid: a3c84bac220cfac43a05b23d89cc0c4f, type: 3}
+  AstroShoot: {fileID: 8300000, guid: bbab21470f2d89a43a8013bdb5844b35, type: 3}
+  AstroDeath: {fileID: 8300000, guid: 8127ace4e10be79479fc87aff97a1e59, type: 3}
   MonoliumCollectClip: {fileID: 8300000, guid: 0f71014da8dbf51418206f288457ab1d, type: 3}
   WallDestroyClip: {fileID: 8300000, guid: 23f032b1a6826bd40928cadede5314bc, type: 3}
 --- !u!4 &1525356198
@@ -60015,10 +60015,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1738022905}
-    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
-      propertyPath: dashForce
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 2005509839249557489, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: maxHealth
       value: 170
