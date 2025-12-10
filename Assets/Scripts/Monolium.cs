@@ -20,6 +20,12 @@ public class Monolium : MonoBehaviour
     {
         if (wallToDestroy != null)
         {
+            if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.WallDestroyClip != null)
+            {
+                Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.WallDestroyClip, wallToDestroy.transform.position);
+            }
+
+
             Debug.Log("¡Muro destruido por recolección final de Monolium! Acceso desbloqueado.");
             Destroy(wallToDestroy);
         }
