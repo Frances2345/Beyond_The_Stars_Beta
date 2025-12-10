@@ -5,6 +5,32 @@ public class BossLevelSoundManager : MonoBehaviour
     public static BossLevelSoundManager Instance { get; private set; }
     public AudioClip bossBattleMusic;
 
+    [Header("Clips del Jugador")]
+    public AudioClip PlayerHitClip;
+    public AudioClip PlayerDeathClip;
+    public AudioClip PlayerShootClip;
+    public AudioClip PlayerDashClip;
+    public AudioClip HealthPackClip;
+
+    [Header("Clips Specialist Trooper")]
+    public AudioClip SpecialSound;
+    public AudioClip SpecialDeath;
+
+    [Header("Clips Strider Trooper")]
+    public AudioClip StriderSound;
+    public AudioClip StriderShoot;
+    public AudioClip StriderDeath;
+
+    [Header("Clips Astro Trooper")]
+    public AudioClip AstroSound;
+    public AudioClip AstrorShoot;
+    public AudioClip AstroDeath;
+
+    [Header("Clips Taladirum")]
+    public AudioClip TaladriumSound;
+    public AudioClip TaladriumDeath;
+
+    [Header("Clips Boss")]
     public AudioClip BossRoarClip;
     public AudioClip BossShootClip;
     public AudioClip BossDeathClip;

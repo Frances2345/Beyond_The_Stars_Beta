@@ -5,7 +5,6 @@ public class Level1SoundManager : MonoBehaviour
 {
     public static Level1SoundManager Instance { get; private set; }
 
-
     public AudioClip LevelMusicClip;
 
     [Header("Clips del Jugador")]
@@ -15,17 +14,23 @@ public class Level1SoundManager : MonoBehaviour
     public AudioClip PlayerDashClip;
     public AudioClip HealthPackClip;
 
+    [Header("Clips Specialist Trooper")]
+    public AudioClip SpecialSound;
+    public AudioClip SpecialDeath;
 
-    [Header("Clips Special Trooper")]
-
-    [Header("Clips Stride Trooper")]
+    [Header("Clips Strider Trooper")]
+    public AudioClip StriderSound;
+    public AudioClip StriderShoot;
+    public AudioClip StriderDeath;
 
     [Header("Clips Astro Trooper")]
+    public AudioClip AstroSound;
+    public AudioClip AstrorShoot;
+    public AudioClip AstroDeath;
 
     [Header("Clips Extras")]
     public AudioClip MonoliumCollectClip;
     public AudioClip WallDestroyClip;
-
 
     private AudioSource SFXSource;
     private AudioSource musicSource;
