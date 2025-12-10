@@ -32,12 +32,18 @@ public class EnemyChase : MonoBehaviour, IDamageable
 
     private Vector2 dashDirection;
 
+    // ------------------------
+    // CHARGING BOOLEAN
+    // ------------------------
+    public bool IsCharging = false;
+    // ------------------------
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
 
-        jugador = GameObject.FindGameObjectWithTag("Player");// implementar con singleton
+        jugador = GameObject.FindGameObjectWithTag("Player");
         if (jugador == null)
         {
             Debug.LogWarning("No se encontró el jugador con tag Player");
@@ -105,6 +111,12 @@ public class EnemyChase : MonoBehaviour, IDamageable
 
     private System.Collections.IEnumerator DashCoroutine()
     {
+        // ------------------------
+        // AQUI INICIA EL DASH
+        // prende el charging
+        // ------------------------
+        IsCharging = true;
+
         isDashing = true;
         canDash = false;
 
@@ -120,6 +132,12 @@ public class EnemyChase : MonoBehaviour, IDamageable
 
         rb.linearVelocity = Vector2.zero;
         isDashing = false;
+
+        // ------------------------
+        // AQUI TERMINA EL DASH
+        // apaga el charging
+        // ------------------------
+        IsCharging = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -141,7 +159,7 @@ public class EnemyChase : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        if(ScoreManager.Instance != null)
+        if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.AddScore(scoreValue);
         }

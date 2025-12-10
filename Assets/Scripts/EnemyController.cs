@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEngine.Rendering;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
@@ -25,6 +24,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     private float fireTimer = 0f;
     private float initialTimer = 0f;
 
+    // ----------------------------
+    // BOOLEANO PARA ANIMACIONES
+    // ----------------------------
+    public bool IsShooting = false;
+    // ----------------------------
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,15 +46,12 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        if(!IsAlive)
-        {
-            return;
-        }
+        if (!IsAlive) return;
 
         currentHealth -= amount;
-        Debug.Log(gameObject.name + "recibio daño. Vida restante " + currentHealth + " .");
+        Debug.Log(gameObject.name + " recibió daño. Vida restante " + currentHealth + ".");
 
-        if(currentHealth <= 0f)
+        if (currentHealth <= 0f)
         {
             Die();
         }
@@ -57,14 +59,14 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if(jugador == null || !IsAlive)
+        if (jugador == null || !IsAlive)
         {
             return;
         }
 
         fireTimer += Time.deltaTime;
 
-        if(isWaiting)
+        if (isWaiting)
         {
             InitialWait();
             return;
@@ -72,7 +74,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         float distanceToPlayer = Vector2.Distance(transform.position, jugador.transform.position);
 
-        if(distanceToPlayer < attackRange)
+        if (distanceToPlayer < attackRange)
         {
             ChasePlayer();
         }
@@ -81,7 +83,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             StopMovement();
         }
 
-        if(fireTimer >= fireRate && distanceToPlayer <= attackRange)
+        if (fireTimer >= fireRate && distanceToPlayer <= attackRange)
         {
             PerformShoot();
             fireTimer = 0f;
@@ -92,13 +94,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         initialTimer += Time.deltaTime;
 
-        if(fireTimer >= fireRate)
+        if (fireTimer >= fireRate)
         {
             PerformShoot();
             fireTimer = 0f;
         }
-        
-        if(initialTimer >= WaitTime)
+
+        if (initialTimer >= WaitTime)
         {
             isWaiting = false;
         }
@@ -117,8 +119,15 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void PerformShoot()
     {
-        if(bulletPrefab == null)
+        // ----------------------------
+        // SEÑAL: EMPIEZA DISPARO
+        // ----------------------------
+        IsShooting = true;
+
+        if (bulletPrefab == null)
         {
+            // apagar la señal si no dispara
+            IsShooting = false;
             return;
         }
 
@@ -126,11 +135,17 @@ public class EnemyController : MonoBehaviour, IDamageable
         GameObject bala = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rbBullet = bala.GetComponent<Rigidbody2D>();
 
-        if(rbBullet != null)
+        if (rbBullet != null)
         {
             rbBullet.linearVelocity = direction * bulletSpeed;
         }
+
+        // ----------------------------
+        // SEÑAL: TERMINA DISPARO
+        // ----------------------------
+        IsShooting = false;
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -147,7 +162,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             ScoreManager.Instance.AddScore(scoreValue);
         }
 
-        Debug.Log(gameObject.name + "ha sido eliminado.");
+        Debug.Log(gameObject.name + " ha sido eliminado.");
         Destroy(gameObject);
     }
 }
