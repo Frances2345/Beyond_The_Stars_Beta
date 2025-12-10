@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: f35010711a460794c95ad5406d527763
+guid: cec445cc20916b74b8d79778fa7e02f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9208749144082335142
-    second: movimientonaveUSA_0
+      213: -5259682370664784982
+    second: trooperdisparo_0
   - first:
-      213: 2508264044298997208
-    second: movimientonaveUSA_1
+      213: 3641150588149646675
+    second: trooperdisparo_1
   - first:
-      213: -1721403156127424005
-    second: movimientonaveUSA_2
+      213: 1392871009615745885
+    second: trooperdisparo_2
   - first:
-      213: -7253873828419339729
-    second: movimientonaveUSA_3
-  - first:
-      213: -6464660147614212208
-    second: movimientonaveUSA_4
-  - first:
-      213: 7531242467407166952
-    second: movimientonaveUSA_5
+      213: 6400932750865238657
+    second: trooperdisparo_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,133 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: movimientonaveUSA_0
+      name: trooperdisparo_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 65
-        width: 107
-        height: 58
-      alignment: 9
-      pivot: {x: 0.5107309, y: 0.5395935}
+        x: 61
+        y: 70
+        width: 77
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a5c5b67e8c0ccf70800000000000000
-      internalID: 9208749144082335142
+      spriteID: aab142930cad107b0800000000000000
+      internalID: -5259682370664784982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_1
+      name: trooperdisparo_1
       rect:
         serializedVersion: 2
-        x: 246
-        y: 66
-        width: 107
-        height: 58
-      alignment: 9
-      pivot: {x: 0.5, y: 0.51979685}
+        x: 261
+        y: 68
+        width: 77
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8dd8353ebd42fc220800000000000000
-      internalID: 2508264044298997208
+      spriteID: 3554d541b27f78230800000000000000
+      internalID: 3641150588149646675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_2
+      name: trooperdisparo_2
       rect:
         serializedVersion: 2
-        x: 446
+        x: 461
         y: 66
-        width: 107
-        height: 58
-      alignment: 9
-      pivot: {x: 0.5, y: 0.51979685}
+        width: 77
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf1e9cb23f85c18e0800000000000000
-      internalID: -1721403156127424005
+      spriteID: d531612bdc8745310800000000000000
+      internalID: 1392871009615745885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_3
+      name: trooperdisparo_3
       rect:
         serializedVersion: 2
-        x: 646
-        y: 66
-        width: 107
-        height: 59
-      alignment: 9
-      pivot: {x: 0.5071582, y: 0.50718236}
+        x: 661
+        y: 67
+        width: 77
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2aff8b8f20155b90800000000000000
-      internalID: -7253873828419339729
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: movimientonaveUSA_4
-      rect:
-        serializedVersion: 2
-        x: 846
-        y: 66
-        width: 107
-        height: 62
-      alignment: 9
-      pivot: {x: 0.5000006, y: 0.48148087}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 09f94d3d8d9e846a0800000000000000
-      internalID: -6464660147614212208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: movimientonaveUSA_5
-      rect:
-        serializedVersion: 2
-        x: 1046
-        y: 66
-        width: 107
-        height: 67
-      alignment: 9
-      pivot: {x: 0.5053654, y: 0.448588}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8edf3233f19548860800000000000000
-      internalID: 7531242467407166952
+      spriteID: 18a8c7e5c6ea4d850800000000000000
+      internalID: 6400932750865238657
       vertices: []
       indices: 
       edges: []
@@ -250,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cbdc5a28ed472864896d2360ebb716b4
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -260,12 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      movimientonaveUSA_0: 9208749144082335142
-      movimientonaveUSA_1: 2508264044298997208
-      movimientonaveUSA_2: -1721403156127424005
-      movimientonaveUSA_3: -7253873828419339729
-      movimientonaveUSA_4: -6464660147614212208
-      movimientonaveUSA_5: 7531242467407166952
+      trooperdisparo_0: -5259682370664784982
+      trooperdisparo_1: 3641150588149646675
+      trooperdisparo_2: 1392871009615745885
+      trooperdisparo_3: 6400932750865238657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

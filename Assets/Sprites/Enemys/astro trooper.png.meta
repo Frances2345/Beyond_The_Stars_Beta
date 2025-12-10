@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 1d2db2ec1e8c2f443807efbcd5d3cfec
+guid: 98819ceba6bb8e043bc423fe847fd673
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -6941175926300572260
     second: astro trooper_0
+  - first:
+      213: -5595142329046966047
+    second: astro trooper_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,6 +124,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: astro trooper_1
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 70
+        width: 77
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e0676132bf0a52b0800000000000000
+      internalID: -5595142329046966047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -136,6 +161,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       astro trooper_0: -6941175926300572260
+      astro trooper_1: -5595142329046966047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

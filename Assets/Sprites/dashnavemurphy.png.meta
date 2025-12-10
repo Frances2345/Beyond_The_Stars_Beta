@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: f35010711a460794c95ad5406d527763
+guid: b1c8d624a8a5052448d9480af1ff0474
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9208749144082335142
-    second: movimientonaveUSA_0
+      213: -1774529436418881035
+    second: dashnavemurphy_0
   - first:
-      213: 2508264044298997208
-    second: movimientonaveUSA_1
+      213: -8532422699187850647
+    second: dashnavemurphy_1
   - first:
-      213: -1721403156127424005
-    second: movimientonaveUSA_2
+      213: 3065337922527840144
+    second: dashnavemurphy_2
   - first:
-      213: -7253873828419339729
-    second: movimientonaveUSA_3
+      213: 5352384425299476439
+    second: dashnavemurphy_3
   - first:
-      213: -6464660147614212208
-    second: movimientonaveUSA_4
+      213: 7069876278149121346
+    second: dashnavemurphy_4
   - first:
-      213: 7531242467407166952
-    second: movimientonaveUSA_5
+      213: 4984809185366612451
+    second: dashnavemurphy_5
+  - first:
+      213: -1189513005024794004
+    second: dashnavemurphy_6
+  - first:
+      213: -1022745532998397615
+    second: dashnavemurphy_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,133 +121,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: movimientonaveUSA_0
+      name: dashnavemurphy_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 65
+        x: 46
+        y: 66
         width: 107
         height: 58
-      alignment: 9
-      pivot: {x: 0.5107309, y: 0.5395935}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a5c5b67e8c0ccf70800000000000000
-      internalID: 9208749144082335142
+      spriteID: 5f947c221ea9f57e0800000000000000
+      internalID: -1774529436418881035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_1
+      name: dashnavemurphy_1
       rect:
         serializedVersion: 2
         x: 246
-        y: 66
+        y: 59
         width: 107
-        height: 58
+        height: 65
       alignment: 9
-      pivot: {x: 0.5, y: 0.51979685}
+      pivot: {x: 0.5, y: 0.55373573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8dd8353ebd42fc220800000000000000
-      internalID: 2508264044298997208
+      spriteID: 962bd6503ceb69980800000000000000
+      internalID: -8532422699187850647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_2
+      name: dashnavemurphy_2
       rect:
         serializedVersion: 2
         x: 446
-        y: 66
+        y: 54
         width: 107
-        height: 58
+        height: 70
       alignment: 9
-      pivot: {x: 0.5, y: 0.51979685}
+      pivot: {x: 0.5, y: 0.58732134}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf1e9cb23f85c18e0800000000000000
-      internalID: -1721403156127424005
+      spriteID: 0974ec489944a8a20800000000000000
+      internalID: 3065337922527840144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_3
+      name: dashnavemurphy_3
       rect:
         serializedVersion: 2
         x: 646
-        y: 66
+        y: 53
         width: 107
-        height: 59
+        height: 71
       alignment: 9
-      pivot: {x: 0.5071582, y: 0.50718236}
+      pivot: {x: 0.5, y: 0.58609146}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2aff8b8f20155b90800000000000000
-      internalID: -7253873828419339729
+      spriteID: 7dffe43d64d774a40800000000000000
+      internalID: 5352384425299476439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_4
+      name: dashnavemurphy_4
       rect:
         serializedVersion: 2
         x: 846
-        y: 66
+        y: 51
         width: 107
-        height: 62
+        height: 72
       alignment: 9
-      pivot: {x: 0.5000006, y: 0.48148087}
+      pivot: {x: 0.4999983, y: 0.6076564}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09f94d3d8d9e846a0800000000000000
-      internalID: -6464660147614212208
+      spriteID: 2450a05640f3d1260800000000000000
+      internalID: 7069876278149121346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimientonaveUSA_5
+      name: dashnavemurphy_5
       rect:
         serializedVersion: 2
         x: 1046
-        y: 66
+        y: 48
         width: 107
-        height: 67
+        height: 74
       alignment: 9
-      pivot: {x: 0.5053654, y: 0.448588}
+      pivot: {x: 0.49881923, y: 0.62970704}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8edf3233f19548860800000000000000
-      internalID: 7531242467407166952
+      spriteID: 3e991ee1b899d2540800000000000000
+      internalID: 4984809185366612451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dashnavemurphy_6
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 47
+        width: 107
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6263218}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a2ac769300e7fe0800000000000000
+      internalID: -1189513005024794004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dashnavemurphy_7
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 44
+        width: 107
+        height: 80
+      alignment: 9
+      pivot: {x: 0.49999887, y: 0.64304096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15153024b5a7ec1f0800000000000000
+      internalID: -1022745532998397615
       vertices: []
       indices: 
       edges: []
@@ -250,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cbdc5a28ed472864896d2360ebb716b4
+    spriteID: 9e443d73247e1264d86eca564ffead26
     internalID: 0
     vertices: []
     indices: 
@@ -260,12 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      movimientonaveUSA_0: 9208749144082335142
-      movimientonaveUSA_1: 2508264044298997208
-      movimientonaveUSA_2: -1721403156127424005
-      movimientonaveUSA_3: -7253873828419339729
-      movimientonaveUSA_4: -6464660147614212208
-      movimientonaveUSA_5: 7531242467407166952
+      dashnavemurphy_0: -1774529436418881035
+      dashnavemurphy_1: -8532422699187850647
+      dashnavemurphy_2: 3065337922527840144
+      dashnavemurphy_3: 5352384425299476439
+      dashnavemurphy_4: 7069876278149121346
+      dashnavemurphy_5: 4984809185366612451
+      dashnavemurphy_6: -1189513005024794004
+      dashnavemurphy_7: -1022745532998397615
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
