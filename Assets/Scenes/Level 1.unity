@@ -2210,7 +2210,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07661429, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.11874381, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5374,7 +5374,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07661429, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.11874381, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5864,11 +5864,11 @@ MonoBehaviour:
   healthRegenAmount: 150
   regenCooldown: 20
   dashForce: 50
-  dashDuration: 0.25
+  dashDuration: 0.3
   dashCooldown: 0.6
   bulletPrefab: {fileID: 7082029783311075945, guid: 652570c97187b5b46b2eb61d4a4a1111, type: 3}
   bulletSpeed: 50
-  speed: 24
+  speed: 30
   rb: {fileID: 1738022907}
 --- !u!212 &1738022904
 SpriteRenderer:
@@ -6028,13 +6028,13 @@ MonoBehaviour:
   jugador: {fileID: 1738022905}
   distanciaExtra: 2
   astroTrooperPrefab: {fileID: 766191529}
-  astroTrooperCooldown: 4
+  astroTrooperCooldown: 8
   astroTrooperTimer: 0
   AstroSpecialistPrefab: {fileID: 354262715}
-  AstroSpecialistCooldown: 5
+  AstroSpecialistCooldown: 10
   AstroSpecialistTimer: 0
   AstroStriderPrefab: {fileID: 736978574}
-  AstroStriderCooldown: 10
+  AstroStriderCooldown: 15
   AstroStriderTimer: 0
 --- !u!114 &1738022909
 MonoBehaviour:
@@ -59786,6 +59786,22 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: maxHealth
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: attackRange
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: bulletSpeed
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6147026155244457653, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -59809,19 +59825,19 @@ PrefabInstance:
       objectReference: {fileID: 766191544}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6578792
+      value: 0.82649356
       objectReference: {fileID: 0}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6737499
+      value: 0.9371862
       objectReference: {fileID: 0}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 165.8366
+      value: 166.3775
       objectReference: {fileID: 0}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4604
+      value: -3.7031
       objectReference: {fileID: 0}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59863,6 +59879,34 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 766191535}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: dashRange
+      value: 28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: dashSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: maxHealth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: attackRange
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: bulletSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: dashCooldown
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: dashDuration
+      value: 0.56
+      objectReference: {fileID: 0}
     - target: {fileID: 5794074480171610880, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_Size.x
       value: 5.906955
@@ -59972,16 +60016,24 @@ PrefabInstance:
       value: AstroSpecialist
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3783836
+      objectReference: {fileID: 0}
+    - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4212637
+      objectReference: {fileID: 0}
+    - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 139.4925
+      value: 139.952
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1739
+      value: 0.7865
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.008
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60015,6 +60067,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1738022905}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: dashRange
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: dashSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: IsCharging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: orbitSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: dashDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2005509839249557489, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: maxHealth
       value: 170
