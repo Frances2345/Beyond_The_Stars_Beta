@@ -77,7 +77,12 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
     {
         isFalling = true;
 
-        if(rb != null)
+        if (Level2SoundManager.Instance != null && Level2SoundManager.Instance.TaladriumSound != null)
+        {
+            Level2SoundManager.Instance.PlayClip(Level2SoundManager.Instance.TaladriumSound, transform.position);
+        }
+
+        if (rb != null)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 0;
@@ -110,6 +115,10 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
             ScoreManager.Instance.AddScore(scoreValue);
         }
 
+        if (Level2SoundManager.Instance != null && Level2SoundManager.Instance.TaladriumDeath != null)
+        {
+            Level2SoundManager.Instance.PlayClip(Level2SoundManager.Instance.TaladriumDeath, transform.position);
+        }
 
         currentHealth = 0;
         OnDied?.Invoke();

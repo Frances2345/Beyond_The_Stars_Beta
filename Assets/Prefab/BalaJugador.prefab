@@ -179,7 +179,7 @@ MonoBehaviour:
   damageAmount: 15
   IgnoreTag: Player
   TimeDestroy: 5
-  shootSoundClip: {fileID: 8300000, guid: 69005634044588f4ebac6d6d4d8b2329, type: 3}
+  shootSoundClip: {fileID: 8300000, guid: 2bb18942666046746b57f3bab9243f1a, type: 3}
 --- !u!82 &2846081606012221568
 AudioSource:
   m_ObjectHideFlags: 0
