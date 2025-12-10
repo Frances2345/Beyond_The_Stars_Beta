@@ -1428,6 +1428,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   m_PrefabInstance: {fileID: 5204731313342227195}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &354262723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+  m_PrefabInstance: {fileID: 5204731313342227195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &354262726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354262715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ac2e90b3a6ccc4dbbe1dd53a65f1de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 354262723}
+  player: {fileID: 1738022905}
 --- !u!1 &380842634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,7 +3129,7 @@ GameObject:
   - component: {fileID: 831821135}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Limits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6177,7 +6196,7 @@ GameObject:
   - component: {fileID: 1788009570}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Limits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59783,6 +59802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 631668750949952173, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: animatorAstroTrooper
+      value: 
+      objectReference: {fileID: 766191544}
     - target: {fileID: 1720103089067065782, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6578792
@@ -59904,6 +59927,10 @@ PrefabInstance:
       value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 8683035028920203961, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
+      propertyPath: IsShooting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683035028920203961, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: attackRange
       value: 45
       objectReference: {fileID: 0}
@@ -59957,19 +59984,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999622
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.008700343
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59977,7 +60004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.997
       objectReference: {fileID: 0}
     - target: {fileID: 303768824034579493, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -60003,10 +60030,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8718191127599902071, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 354262726}
   m_SourcePrefab: {fileID: 100100000, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
 --- !u!1001 &8312799228740914482
 PrefabInstance:

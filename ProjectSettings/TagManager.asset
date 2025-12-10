@@ -8,6 +8,7 @@ TagManager:
   - PlayerBullet
   - Wall
   - Asteroid
+  - Limits
   layers:
   - Default
   - TransparentFX

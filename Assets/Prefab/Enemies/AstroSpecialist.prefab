@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1028960618641792967}
   - component: {fileID: -2368120764104376192}
   - component: {fileID: 7656096809510908097}
-  - component: {fileID: 8718191127599902071}
   - component: {fileID: 2929906180453582931}
+  - component: {fileID: 8247624884515240193}
   m_Layer: 0
   m_Name: AstroSpecialist
   m_TagString: Enemy
@@ -114,6 +114,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 5
   dashCooldown: 0.4
+  IsCharging: 0
 --- !u!114 &1028960618641792967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,18 +207,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.5555556, y: 3.5555556}
   m_EdgeRadius: 0
---- !u!114 &8718191127599902071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250332384062263893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2146ec4e41a558d49b496cd4a85bb48c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2929906180453582931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -264,3 +253,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.5555556, y: 3.5555556}
   m_EdgeRadius: 0
+--- !u!114 &8247624884515240193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250332384062263893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2146ec4e41a558d49b496cd4a85bb48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
