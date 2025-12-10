@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Monolium : MonoBehaviour
 {
-    private const string Wall = "Wall";
+    public GameObject wallToDestroy;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,31 +12,22 @@ public class Monolium : MonoBehaviour
 
             if (player != null)
             {
-                player.CollectMonolium();
-
-                if (player.MonoliumCount == player.MaxMonolium)
-                {
-                    DestroyWall();
-                }
-
-                Destroy(gameObject);
+                player.CollectMonolium(this);
             }
         }
     }
-
-    private void DestroyWall()
+    public void DestroyWall()
     {
-        GameObject wall = GameObject.FindGameObjectWithTag(Wall);//reemoplzar
-
-        if (wall != null)
+        if (wallToDestroy != null)
         {
             Debug.Log("¡Muro destruido por recolección final de Monolium! Acceso desbloqueado.");
-            Destroy(wall);
+            Destroy(wallToDestroy);
         }
         else
         {
-            Debug.LogWarning("La pared con el Tag '" + Wall + "' no se encontró.");
+            Debug.LogWarning("La pared (wallToDestroy) no está asignada en el Inspector.");
         }
     }
+
 
 }

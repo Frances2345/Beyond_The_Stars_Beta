@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (4)
@@ -1604,7 +1608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 6.0999756, y: 3.1019897}
+  m_AnchoredPosition: {x: 6.0999756, y: 3.1019287}
   m_SizeDelta: {x: 123.856, y: 117.824}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &388760868
@@ -2018,7 +2022,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.076553255, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.076657206, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2112,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (6)
@@ -2351,6 +2359,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (2)
@@ -3340,7 +3352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 172.56702, y: -15.664978}
+  m_AnchoredPosition: {x: 172.56702, y: -15.664917}
   m_SizeDelta: {x: 584.393, y: 61.335}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1162107016
@@ -3538,6 +3550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (9)
@@ -3603,6 +3619,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (7)
@@ -4203,6 +4223,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (5)
@@ -4380,7 +4404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0, y: -15.664978}
+  m_AnchoredPosition: {x: 0, y: -15.664917}
   m_SizeDelta: {x: 139.084, y: 121.012}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1498529253
@@ -4579,7 +4603,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.076553255, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.076657206, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60502,6 +60526,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (3)
@@ -60567,6 +60595,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (1)
@@ -60844,6 +60876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium (8)
@@ -61493,6 +61529,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8135473167777245451, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
+      propertyPath: wallToDestroy
+      value: 
+      objectReference: {fileID: 489061344}
     - target: {fileID: 8536353155698238661, guid: 530b92e2711f4d144b5814ffcdaec459, type: 3}
       propertyPath: m_Name
       value: Monolium

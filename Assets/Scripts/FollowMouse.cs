@@ -9,7 +9,7 @@ public class FollowMouse : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Compensamos porque el sprite mira hacia ARRIBA (90°)
+        // Compensamos porque el sprite mira hacia ARRIBA (90ï¿½)
         transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 }
