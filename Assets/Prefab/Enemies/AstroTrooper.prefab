@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7149501541657681276}
   - component: {fileID: 5794074480171610880}
   - component: {fileID: 4241511058989990671}
+  - component: {fileID: 5024826890722359995}
   - component: {fileID: -7509959033511319497}
   - component: {fileID: 631668750949952173}
   m_Layer: 0
@@ -164,6 +165,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5024826890722359995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614992590106910983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f86919beda03b64bb345f5c40e50fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 400
+  scoreValue: 250
+  bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
+  moveSpeed: 25
+  bulletSpeed: 8
+  fireRate: 1
+  attackRange: 53.7
+  WaitTime: 2
+  spriteToRotate: {fileID: 1720103089067065782}
+  IsShooting: 0
 --- !u!114 &-7509959033511319497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,4 +211,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01cd35b5488aa74493f921305efde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorAstroTrooper: {fileID: 0}

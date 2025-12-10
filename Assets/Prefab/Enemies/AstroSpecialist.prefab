@@ -107,13 +107,13 @@ MonoBehaviour:
   maxHealth: 75
   scoreValue: 100
   player: {fileID: 0}
-  moveSpeed: 2
-  initialWaitTime: 2
-  visionRange: 20
-  detectionRadius: 70
+  moveSpeed: 20
+  initialWaitTime: 3
+  visionRange: 103
+  detectionRadius: 127.3
   orbitSpeed: 50
   orbitDistance: 8
-  dashRange: 4
+  dashRange: 48.8
   dashSpeed: 12
   dashDuration: 7
   dashCooldown: 5

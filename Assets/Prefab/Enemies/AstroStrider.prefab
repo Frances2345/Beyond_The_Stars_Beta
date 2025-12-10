@@ -191,9 +191,9 @@ MonoBehaviour:
   maxHealth: 400
   scoreValue: 250
   bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
-  moveSpeed: 2
+  moveSpeed: 15
   bulletSpeed: 13
   fireRate: 2
-  attackRange: 55
+  attackRange: 66.6
   WaitTime: 2
   IsShooting: 0
