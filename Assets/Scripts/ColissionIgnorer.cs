@@ -11,6 +11,7 @@ public class CollisionIgnorer : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+        GameObject[] limits = GameObject.FindGameObjectsWithTag("Limits");
 
         // Enemy con Asteroid
         foreach (GameObject enemy in enemies)
@@ -41,5 +42,20 @@ public class CollisionIgnorer : MonoBehaviour
                 Physics2D.IgnoreCollision(colA, colB, true);
             }
         }
+
+
+        foreach (GameObject enemy in enemies)
+        {
+            Collider2D enemyCol = enemy.GetComponent<Collider2D>();
+            if (enemyCol == null) continue;
+
+            foreach (GameObject limit in limits)
+            {
+                Collider2D limitCol = limit.GetComponent<Collider2D>();
+                if (limitCol == null) continue;
+                Physics2D.IgnoreCollision(enemyCol, limitCol, true);
+            }
+        }
+
     }
 }

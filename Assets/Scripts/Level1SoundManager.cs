@@ -11,6 +11,9 @@ public class Level1SoundManager : MonoBehaviour
     public AudioClip PlayerDashClip;
     public AudioClip HealthPackClip;
     public AudioClip MonoliumCollectClip;
+    public AudioClip WallDestroyClip;
+
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -20,13 +23,21 @@ public class Level1SoundManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        _audioSource = gameObject.AddComponent<AudioSource>();
+
+        if (_audioSource == null)
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
     }
 
     public void PlayClip(AudioClip clip, Vector3 position)
     {
         if (clip != null)
         {
-            AudioSource.PlayClipAtPoint(clip, position);
+            _audioSource.PlayOneShot(clip, 0.9f);
         }
     }
 }
