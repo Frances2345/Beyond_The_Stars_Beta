@@ -28,9 +28,21 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     public Transform spriteToRotate;
 
     // ----------------------------
-    // BOOLEANO PARA ANIMACIONES
+    // Animación
     // ----------------------------
     public bool IsShooting = false;
+
+    // ----------------------------
+    // DASH
+    // ----------------------------
+    public float dashRange = 3f;
+    public float dashSpeed = 12f;
+    public float dashDuration = 0.25f;
+    public float dashCooldown = 1f;
+
+    private bool isDashing = false;
+    private bool canDash = true;
+
     // ----------------------------
 
     void Start()
@@ -46,10 +58,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             enabled = false;
         }
 
-        // Si no se asigna un sprite específico, usa el propio transform
-        if (spriteToRotate == null) // <--- AÑADIDO
+        if (spriteToRotate == null)
         {
-            spriteToRotate = transform; // <--- AÑADIDO
+            spriteToRotate = transform;
         }
     }
 
@@ -69,12 +80,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     void Update()
     {
         if (jugador == null || !IsAlive)
-        {
             return;
-        }
 
-        // Lógica de Rotación (de EnemyLookAtPlayer)
-        HandleLookAtPlayer(); // <--- AÑADIDO
+        HandleLookAtPlayer();
 
         fireTimer += Time.deltaTime;
 
@@ -86,17 +94,32 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
         float distanceToPlayer = Vector2.Distance(transform.position, jugador.transform.position);
 
-        // Lógica de sonido de rango (AstroSound)
+        // Rango Sonido
         if (distanceToPlayer < attackRange && !isSoundActive)
         {
             isSoundActive = true;
-            PlayAstroSound(); // <--- MODIFICADO (Usa AstroSound)
+            PlayAstroSound();
         }
         else if (distanceToPlayer >= attackRange && isSoundActive)
         {
             isSoundActive = false;
         }
 
+        // ----------------------------
+        // DASH
+        // ----------------------------
+        if (!isDashing && canDash && distanceToPlayer <= dashRange)
+        {
+            StartCoroutine(DoDash());
+        }
+
+        // Si está dashing, NO mover hacia otro lado
+        if (isDashing)
+            return;
+
+        // ----------------------------
+        // FOLLOW
+        // ----------------------------
         if (distanceToPlayer < attackRange)
         {
             ChasePlayer();
@@ -106,6 +129,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             StopMovement();
         }
 
+        // ----------------------------
+        // SHOOT
+        // ----------------------------
         if (fireTimer >= fireRate && distanceToPlayer <= attackRange)
         {
             PerformShoot();
@@ -113,6 +139,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         }
     }
 
+    // Rotación del sprite hacia el jugador
     private void HandleLookAtPlayer()
     {
         if (spriteToRotate == null || jugador == null) return;
@@ -147,6 +174,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         }
     }
 
+    // FOLLOW
     private void ChasePlayer()
     {
         Vector3 direction = (jugador.transform.position - transform.position).normalized;
@@ -158,11 +186,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         rb.linearVelocity = Vector2.zero;
     }
 
+    // SHOOT
     private void PerformShoot()
     {
-        // ----------------------------
-        // SEÑAL: EMPIEZA DISPARO
-        // ----------------------------
         IsShooting = true;
 
         if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.AstroShoot != null)
@@ -172,7 +198,6 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
         if (bulletPrefab == null)
         {
-            // apagar la señal si no dispara
             IsShooting = false;
             return;
         }
@@ -186,16 +211,40 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             rbBullet.linearVelocity = direction * bulletSpeed;
         }
 
-        // ----------------------------
-        // SEÑAL: TERMINA DISPARO
-        // ----------------------------
         IsShooting = false;
     }
+
+    // ----------------------------
+    // DASH (COROUTINE)
+    // ----------------------------
+    private System.Collections.IEnumerator DoDash()
+    {
+        isDashing = true;
+        canDash = false;
+
+        Vector2 dashDir = (jugador.transform.position - transform.position).normalized;
+
+        rb.linearVelocity = dashDir * dashSpeed;
+
+        yield return new WaitForSeconds(dashDuration);
+
+        rb.linearVelocity = Vector2.zero;
+
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        canDash = true;
+    }
+    // ----------------------------
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, dashRange);
     }
 
     public void Die()
@@ -212,6 +261,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         {
             Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.AstroDeath, transform.position);
         }
+
         Debug.Log(gameObject.name + " ha sido eliminado.");
         Destroy(gameObject);
     }
