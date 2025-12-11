@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4241511058989990671}
   - component: {fileID: 5024826890722359995}
   - component: {fileID: -7509959033511319497}
-  - component: {fileID: 631668750949952173}
+  - component: {fileID: 5757271046625417433}
   m_Layer: 0
   m_Name: AstroTrooper
   m_TagString: Enemy
@@ -177,16 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f86919beda03b64bb345f5c40e50fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  TrooperAnimator: {fileID: 0}
+  maxHealth: 130
   scoreValue: 250
   bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
   moveSpeed: 25
-  bulletSpeed: 8
+  bulletSpeed: 35
   fireRate: 1
-  attackRange: 53.7
+  attackRange: 60
   WaitTime: 2
   spriteToRotate: {fileID: 1720103089067065782}
   IsShooting: 0
+  dashRange: 29.5
+  dashSpeed: 70
+  dashDuration: 0.55
+  dashCooldown: 0.7
 --- !u!114 &-7509959033511319497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,15 +204,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2146ec4e41a558d49b496cd4a85bb48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &631668750949952173
-MonoBehaviour:
+--- !u!95 &5757271046625417433
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8614992590106910983}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01cd35b5488aa74493f921305efde92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43ca36b43a24308419bc4019e190bf46, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

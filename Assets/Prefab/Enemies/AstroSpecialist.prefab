@@ -104,19 +104,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c285592a65ae13409036c8bbb45f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 75
+  maxHealth: 130
   scoreValue: 100
   player: {fileID: 0}
   moveSpeed: 20
   initialWaitTime: 3
-  visionRange: 103
+  visionRange: 130
   detectionRadius: 127.3
-  orbitSpeed: 50
+  orbitSpeed: 55
   orbitDistance: 8
-  dashRange: 48.8
-  dashSpeed: 12
-  dashDuration: 7
-  dashCooldown: 5
+  dashRange: 65
+  dashSpeed: 100
+  dashDuration: 6
+  dashCooldown: 6
   dashForce: 150
   IsCharging: 0
 --- !u!50 &-2368120764104376192
