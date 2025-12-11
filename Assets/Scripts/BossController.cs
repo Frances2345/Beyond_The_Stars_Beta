@@ -41,6 +41,7 @@ public class BossController : MonoBehaviour, IDamageable
     private Transform player;
     private Rigidbody2D rb;
 
+
     void Awake()
     {
         if (Instance != null && Instance != this)
