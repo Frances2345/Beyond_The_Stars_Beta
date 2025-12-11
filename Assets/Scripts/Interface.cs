@@ -22,3 +22,4 @@ public interface IDefendable
 
     event Action OnShieldDepleted;
 }
+
