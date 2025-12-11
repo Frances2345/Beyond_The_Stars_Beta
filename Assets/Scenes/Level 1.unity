@@ -1651,7 +1651,7 @@ Animator:
   m_GameObject: {fileID: 354262715}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b5af33fb75a012a48829229a57393b64, type: 2}
+  m_Controller: {fileID: 9100000, guid: f41d8aebbb9920f4499d223e98b3a2d1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2426,7 +2426,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22973433, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.20422736, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5796,7 +5796,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22973433, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.20422736, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60461,6 +60461,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1738022905}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: AstroSpecialistAnimator
+      value: 
+      objectReference: {fileID: 354262727}
     - target: {fileID: 2005509839249557489, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: maxHealth
       value: 170

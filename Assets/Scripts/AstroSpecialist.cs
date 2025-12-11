@@ -7,7 +7,6 @@ public class AstroSpecialist : MonoBehaviour
     //------------------------
     public Animator AstroSpecialistAnimator;
 
-
     //----------------
     [SerializeField] private float maxHealth = 75f;
     private float currentHealth;
@@ -45,17 +44,13 @@ public class AstroSpecialist : MonoBehaviour
 
     private Vector2 dashDirection;
 
-    // ------------------------
-    // CHARGING BOOLEAN
-    // ------------------------
-    public bool IsCharging = false; // <--- MANTENIDO
-    // ------------------------
+    public bool IsCharging = false; // ya no se usa realmente
 
+    // ------------------------
     void Start()
     {
         AstroSpecialistAnimator = GetComponent<Animator>();
 
-        //------------------------
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
 
@@ -75,7 +70,6 @@ public class AstroSpecialist : MonoBehaviour
                 enabled = false;
             }
         }
-
     }
 
     public void TakeDamage(float amount)
@@ -89,12 +83,11 @@ public class AstroSpecialist : MonoBehaviour
     void Update()
     {
         if (player == null || !IsAlive) return;
+
+        if (isWaiting)
         {
-            if (isWaiting)
-            {
-                HandleInitialWait();
-                return;
-            }
+            HandleInitialWait();
+            return;
         }
 
         float dist = Vector2.Distance(transform.position, player.position);
@@ -111,29 +104,22 @@ public class AstroSpecialist : MonoBehaviour
 
         if (dist <= dashRange && canDash && !isDashing)
         {
-            Dash();
+            StartCoroutine(DashCoroutine());
             return;
         }
 
         if (!isDashing)
         {
-            // Combinamos ChasePlayer y OrbitAroundPlayer
             if (dist <= visionRange)
             {
-                OrbitAroundPlayer(); // Mantenemos la lógica de órbita como movimiento principal en rango.
+                OrbitAroundPlayer();
             }
             else
             {
-                StopMovement(); // Si está fuera de rango
+                StopMovement();
             }
         }
     }
-
-    public void FixedUpdate()
-    {
-
-    }
-
 
     private void PlaySpecialSound()
     {
@@ -152,7 +138,6 @@ public class AstroSpecialist : MonoBehaviour
     private void OrbitAroundPlayer()
     {
         Vector2 dir = (transform.position - player.position).normalized;
-
         Vector2 desiredPos = (Vector2)player.position + dir * orbitDistance;
 
         transform.position = Vector2.MoveTowards(transform.position, desiredPos, Time.deltaTime * 6f);
@@ -165,45 +150,42 @@ public class AstroSpecialist : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
     }
 
-    private void Dash()
+    // ----------------------------------------------------
+    // ------------------- DASH ARREGLADO -----------------
+    // ----------------------------------------------------
+    private IEnumerator DashCoroutine()
     {
-        StartCoroutine(DashCoroutine());
-    }
-
-    private System.Collections.IEnumerator DashCoroutine()
-    {
-        // ------------------------
-        // AQUI INICIA EL DASH
-        // prende el charging
-        // ------------------------
-        IsCharging = true;
-
-        isDashing = true;
+        isDashing = false;
         canDash = false;
 
-        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialDash != null)
-        {
-            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialDash, transform.position);
-        }
+        // ACTIVAR PREPARACION
+        AstroSpecialistAnimator.SetBool("EstaPreparandose", true);
+        IsCharging = true;
+
+        // Pequeño delay opcional
+        yield return new WaitForSeconds(0.3f);
+
+        // ACTIVAR EMBISTE
+        AstroSpecialistAnimator.SetBool("EstaPreparandose", false);
+        AstroSpecialistAnimator.SetBool("Estaembistiendo", true);
+
+        isDashing = true;
 
         dashDirection = (player.position - transform.position).normalized;
 
         float timer = 0f;
         while (timer < dashDuration)
         {
-            // Usamos dashSpeed del EnemyChase, asumiendo que es la velocidad final.
             rb.linearVelocity = dashDirection * dashSpeed;
             timer += Time.deltaTime;
             yield return null;
         }
 
+        // FIN DEL DASH
         rb.linearVelocity = Vector2.zero;
         isDashing = false;
 
-        // ------------------------
-        // AQUI TERMINA EL DASH
-        // apaga el charging
-        // ------------------------
+        AstroSpecialistAnimator.SetBool("Estaembistiendo", false);
         IsCharging = false;
 
         yield return new WaitForSeconds(dashCooldown);
