@@ -28,6 +28,8 @@ public class BossController : MonoBehaviour, IDamageable
     public GameObject bossBulletPrefab;
     public float bulletSpeed = 10f;
 
+    public float moveSpeed = 7f;
+
     public int burstBulletCount = 20;
     public float burstDuration = 2f;
     public float cooldownTime = 8f;
@@ -68,6 +70,35 @@ public class BossController : MonoBehaviour, IDamageable
         StartCoroutine(RegenerateHealth());
         StartCoroutine(AttackPattern());
     }
+
+    void Update()
+    {
+        if (player == null || !IsAlive) return;
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= visionRange)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            StopMovement();
+        }
+    }
+
+    private void ChasePlayer()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        rb.linearVelocity = direction * moveSpeed;
+    }
+
+    private void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
+
+
 
     public void TakeDamage(float amount)
     {
