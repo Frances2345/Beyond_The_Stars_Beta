@@ -102,6 +102,10 @@ MonoBehaviour:
     m_Localized: "RECOLHA TODO O MONOLIUM PARA QUE A PORTA SEJA DESTRU\xCDDA"
     m_Metadata:
       m_Items: []
+  - m_Id: 820469054050304
+    m_Localized: DERROTE O CHEFE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -102,6 +102,10 @@ MonoBehaviour:
     m_Localized: COLLECT ALL MONOLIUM TO DESTROY THE DOOR
     m_Metadata:
       m_Items: []
+  - m_Id: 820469054050304
+    m_Localized: DEFEAT THE BOSS
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -38,7 +38,6 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
 
     // ----------------------------
     // BOOLEANO PARA ANIMACIONES
-    // ----------------------------
     public bool IsShooting = false;
     // ----------------------------
 
@@ -55,6 +54,17 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
             Debug.LogWarning("No se encontró el jugador de tag 'Player'");
             enabled = false;
         }
+    }
+
+    public void TakeDamage(float amount, bool isCritical)
+    {
+        float finalDamage = amount;
+        if (isCritical)
+        {
+            finalDamage *= 2f;
+            Debug.Log("GOLPE CRITICO");
+        }
+        TakeDamage(finalDamage);
     }
 
     public void TakeDamage(float amount)
@@ -77,10 +87,7 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
                 remainingDamage -= currentShield;
                 currentShield = 0f;
                 OnShieldDepleted?.Invoke();
-
             }
-
-
         }
 
         if (remainingDamage > 0f)

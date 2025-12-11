@@ -102,6 +102,10 @@ MonoBehaviour:
     m_Localized: RECOLECTA TODO EL MONOLIUM PARA QUE SE DESTRUYA LA PUERTA
     m_Metadata:
       m_Items: []
+  - m_Id: 820469054050304
+    m_Localized: DERROTA AL JEFE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
