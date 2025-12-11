@@ -8,6 +8,8 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
     private float currentHealth;
     public int scoreValue = 750;
 
+    public float damageToPlayer = 170f;
+
     public bool IsAlive => currentHealth > 0;
     public event Action OnDied;
 
@@ -94,6 +96,12 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            IDamageable damageableTarget = collision.gameObject.GetComponent<IDamageable>();
+            if (damageableTarget != null)
+            {
+                damageableTarget.TakeDamage(damageToPlayer);
+                Debug.Log("MAS CUIDADOSO LA SIGUIENTE, QUE NO LA PUEDES CONTAR");
+            }
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Limits"))
