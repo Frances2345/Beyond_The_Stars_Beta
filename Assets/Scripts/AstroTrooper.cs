@@ -3,6 +3,16 @@ using System;
 
 public class AstroTrooper : MonoBehaviour, IDamageable
 {
+    // ----------------------------
+    public Animator TrooperAnimator;
+
+
+
+
+
+    //----------------------------
+
+    // VIDA Y PUNTUACIÓN
     public float maxHealth = 400f;
     private float currentHealth;
     public int scoreValue = 250;
@@ -45,8 +55,17 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
     // ----------------------------
 
+
+
+
+
+
     void Start()
     {
+        TrooperAnimator = GetComponent<Animator>();
+
+        //------------------------------
+
         rb = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
@@ -138,6 +157,33 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             fireTimer = 0f;
         }
     }
+    // ANMACION DEL DASH
+    // ----------------------------
+    public void FixedUpdate()
+    {
+        if (TrooperAnimator != null && isDashing)
+        {
+            TrooperAnimator.SetBool("IsCharging", true);
+        }
+        if (TrooperAnimator != null && !isDashing)
+        {
+            TrooperAnimator.SetBool("IsCharging", false);
+        }
+
+        //--------------------------
+
+        if (TrooperAnimator != null && IsShooting)
+        {
+            TrooperAnimator.SetBool("IsShooting", true);
+        }
+        if (TrooperAnimator != null && !IsShooting)
+        {
+            TrooperAnimator.SetBool("IsShooting", false);
+        }
+    }
+
+    //  --------------------------   el de las recargas: 
+
 
     // Rotación del sprite hacia el jugador
     private void HandleLookAtPlayer()
@@ -236,7 +282,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
         canDash = true;
     }
-    // ----------------------------
+
 
     private void OnDrawGizmosSelected()
     {
@@ -266,4 +312,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
+
+
+  
 }
