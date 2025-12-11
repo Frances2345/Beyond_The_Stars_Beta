@@ -1,11 +1,23 @@
 using UnityEngine;
 using System;
 
-public class AstroStrider : MonoBehaviour, IDamageable
+public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
 {
     public float maxHealth = 400f;
     private float currentHealth;
     public int scoreValue = 250;
+
+    public float maxShield = 250f;
+    private float currentShield;
+    public float regenCooldownTime = 7f;
+    private float regenTimer = 0f;
+
+    public float MaxShield => maxShield;
+    public float CurrentShield => currentShield;
+    public bool IsShieldActive => currentShield > 0f;
+
+    public event Action OnShieldDepleted;
+
     public bool IsAlive => currentHealth > 0;
     public event Action OnDied;
 
@@ -35,6 +47,7 @@ public class AstroStrider : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
+        currentShield = maxShield;
 
         jugador = GameObject.FindGameObjectWithTag("Player");
         if (jugador == null)
@@ -48,8 +61,33 @@ public class AstroStrider : MonoBehaviour, IDamageable
     {
         if (!IsAlive) return;
 
-        currentHealth -= amount;
-        Debug.Log(gameObject.name + " recibió daño. Vida restante " + currentHealth + ".");
+        regenTimer = 0f;
+        float remainingDamage = amount;
+
+        if (IsShieldActive)
+        {
+            if (currentShield >= remainingDamage)
+            {
+                currentShield -= remainingDamage;
+                remainingDamage = 0f;
+                Debug.Log(gameObject.name + " Escudo absorbió " + amount + " de daño. Escudo restante: " + currentShield + ".");
+            }
+            else
+            {
+                remainingDamage -= currentShield;
+                currentShield = 0f;
+                OnShieldDepleted?.Invoke();
+
+            }
+
+
+        }
+
+        if (remainingDamage > 0f)
+        {
+            currentHealth -= remainingDamage;
+            Debug.Log(gameObject.name + " recibió " + remainingDamage + " de daño directo. Vida restante " + currentHealth + ".");
+        }
 
         if (currentHealth <= 0f)
         {
@@ -64,6 +102,18 @@ public class AstroStrider : MonoBehaviour, IDamageable
             return;
         }
         fireTimer += Time.deltaTime;
+
+        if (!IsShieldActive)
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer >= regenCooldownTime)
+            {
+                currentShield = maxShield; 
+                regenTimer = 0f;
+                Debug.Log("¡Escudo de " + gameObject.name + " restaurado por completo!");
+            }
+
+        }
 
         if (isWaiting)
         {

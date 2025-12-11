@@ -13,3 +13,12 @@ public interface IAttackable
     float DamageAmount { get; }
     void AttackTarget(IDamageable target);
 }
+
+public interface IDefendable
+{
+    float MaxShield { get; }
+    float CurrentShield { get; }
+    bool IsShieldActive { get; }
+
+    event Action OnShieldDepleted;
+}
