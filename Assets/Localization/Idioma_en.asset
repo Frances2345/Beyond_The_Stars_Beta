@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: DEFEAT THE BOSS
     m_Metadata:
       m_Items: []
+  - m_Id: 847776380620800
+    m_Localized: HIGH SCORE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

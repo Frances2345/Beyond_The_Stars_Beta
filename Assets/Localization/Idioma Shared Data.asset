@@ -103,6 +103,10 @@ MonoBehaviour:
     m_Key: DEFEAT THE BOSS
     m_Metadata:
       m_Items: []
+  - m_Id: 847776380620800
+    m_Key: HIGH SCORE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: DERROTE O CHEFE
     m_Metadata:
       m_Items: []
+  - m_Id: 847776380620800
+    m_Localized: PONTUACAO MAXIMA
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
