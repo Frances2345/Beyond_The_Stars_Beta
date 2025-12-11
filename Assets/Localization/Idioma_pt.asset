@@ -94,6 +94,14 @@ MonoBehaviour:
     m_Localized: PROPIETARIOS
     m_Metadata:
       m_Items: []
+  - m_Id: 767584094130176
+    m_Localized: PRESSIONE SHIFT PARA CORRER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768333326848000
+    m_Localized: "RECOLHA TODO O MONOLIUM PARA QUE A PORTA SEJA DESTRU\xCDDA"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

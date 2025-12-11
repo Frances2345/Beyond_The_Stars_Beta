@@ -94,6 +94,14 @@ MonoBehaviour:
     m_Localized: OWNERS
     m_Metadata:
       m_Items: []
+  - m_Id: 767584094130176
+    m_Localized: PRESS SHIFT TO DASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768333326848000
+    m_Localized: COLLECT ALL MONOLIUM TO DESTROY THE DOOR
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

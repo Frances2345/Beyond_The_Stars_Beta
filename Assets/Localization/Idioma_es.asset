@@ -94,6 +94,14 @@ MonoBehaviour:
     m_Localized: PROPIETARIOS
     m_Metadata:
       m_Items: []
+  - m_Id: 767584094130176
+    m_Localized: PRESIONA SHIFT PARA DASHEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768333326848000
+    m_Localized: RECOLECTA TODO EL MONOLIUM PARA QUE SE DESTRUYA LA PUERTA
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
