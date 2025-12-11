@@ -165,9 +165,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         // ----------------------------
         IsShooting = true;
 
-        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.AstroShoot != null) // <--- MODIFICADO
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.AstroShoot != null)
         {
-            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.AstroShoot, transform.position); // <--- MODIFICADO
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.AstroShoot, transform.position);
         }
 
         if (bulletPrefab == null)

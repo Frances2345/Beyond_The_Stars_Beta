@@ -5863,7 +5863,7 @@ MonoBehaviour:
   maxHealthPacks: 3
   healthRegenAmount: 150
   regenCooldown: 20
-  dashForce: 50
+  dashForce: 100
   dashDuration: 0.25
   dashCooldown: 0.6
   bulletPrefab: {fileID: 7082029783311075945, guid: 652570c97187b5b46b2eb61d4a4a1111, type: 3}
