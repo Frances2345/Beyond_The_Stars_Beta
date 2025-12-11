@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: b37cef7898d400a4c927f1932ce3c9b6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2452589773037461599
+    second: astro specialist pre embistiendo_0
+  - first:
+      213: -3531735954136766366
+    second: astro specialist pre embistiendo_1
+  - first:
+      213: 4286394587558656660
+    second: astro specialist pre embistiendo_2
+  - first:
+      213: 4823267586076253358
+    second: astro specialist pre embistiendo_3
+  - first:
+      213: 4053633883106059987
+    second: astro specialist pre embistiendo_4
+  - first:
+      213: 4248762687520320065
+    second: astro specialist pre embistiendo_5
+  - first:
+      213: -6031372345461055643
+    second: astro specialist pre embistiendo_6
+  - first:
+      213: 1470159769248569341
+    second: astro specialist pre embistiendo_7
+  - first:
+      213: -5965946268516776112
+    second: astro specialist pre embistiendo_8
+  - first:
+      213: -8402531443635038212
+    second: astro specialist pre embistiendo_9
+  - first:
+      213: 3026712046342513498
+    second: astro specialist pre embistiendo_10
+  - first:
+      213: -2182152201145513236
+    second: astro specialist pre embistiendo_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 18
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af98568896a6fdd0800000000000000
+      internalID: -2452589773037461599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268e3359cd0ccfec0800000000000000
+      internalID: -3531735954136766366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_2
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a3796ca255c7b30800000000000000
+      internalID: 4286394587558656660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac1bb49050bfe240800000000000000
+      internalID: 4823267586076253358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_4
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d626042a86614830800000000000000
+      internalID: 4053633883106059987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a25944723a6fa30800000000000000
+      internalID: 4248762687520320065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_6
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56fdda0bec24c4ca0800000000000000
+      internalID: -6031372345461055643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_7
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df79129558e076410800000000000000
+      internalID: 1470159769248569341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_8
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 28
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0578dfb4a73b43da0800000000000000
+      internalID: -5965946268516776112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_9
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 28
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf75518ab26346b80800000000000000
+      internalID: -8402531443635038212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_10
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 28
+        width: 74
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5324a7e19a010a20800000000000000
+      internalID: 3026712046342513498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: astro specialist pre embistiendo_11
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 28
+        width: 62
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea82e4722077b1e0800000000000000
+      internalID: -2182152201145513236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      astro specialist pre embistiendo_0: -2452589773037461599
+      astro specialist pre embistiendo_1: -3531735954136766366
+      astro specialist pre embistiendo_10: 3026712046342513498
+      astro specialist pre embistiendo_11: -2182152201145513236
+      astro specialist pre embistiendo_2: 4286394587558656660
+      astro specialist pre embistiendo_3: 4823267586076253358
+      astro specialist pre embistiendo_4: 4053633883106059987
+      astro specialist pre embistiendo_5: 4248762687520320065
+      astro specialist pre embistiendo_6: -6031372345461055643
+      astro specialist pre embistiendo_7: 1470159769248569341
+      astro specialist pre embistiendo_8: -5965946268516776112
+      astro specialist pre embistiendo_9: -8402531443635038212
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

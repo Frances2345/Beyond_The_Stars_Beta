@@ -4,6 +4,11 @@ using System.Collections;
 
 public class AstroSpecialist : MonoBehaviour
 {
+    //------------------------
+    public Animator AstroSpecialistAnimator;
+
+
+    //----------------
     [SerializeField] private float maxHealth = 75f;
     private float currentHealth;
     public int scoreValue = 100;
@@ -48,6 +53,9 @@ public class AstroSpecialist : MonoBehaviour
 
     void Start()
     {
+        AstroSpecialistAnimator = GetComponent<Animator>();
+
+        //------------------------
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
 
@@ -120,6 +128,12 @@ public class AstroSpecialist : MonoBehaviour
             }
         }
     }
+
+    public void FixedUpdate()
+    {
+
+    }
+
 
     private void PlaySpecialSound()
     {
