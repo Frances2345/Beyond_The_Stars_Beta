@@ -144,6 +144,7 @@ public class Player1 : MonoBehaviour, IDamageable
         {
             movementAudio.Play();
         }
+
     }
 
     private void OnMoveStop(InputAction.CallbackContext context)
