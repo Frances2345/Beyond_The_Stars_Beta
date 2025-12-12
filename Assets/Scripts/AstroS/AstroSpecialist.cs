@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class AstroSpecialist : MonoBehaviour
+public class AstroSpecialist : MonoBehaviour, IDamageable
 {
     //------------------------
     public Animator AstroSpecialistAnimator;
@@ -72,14 +72,6 @@ public class AstroSpecialist : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
-    {
-        if (!IsAlive) return;
-
-        currentHealth -= amount;
-        if (currentHealth <= 0) Die();
-    }
-
     void Update()
     {
         if (player == null || !IsAlive) return;
@@ -121,33 +113,29 @@ public class AstroSpecialist : MonoBehaviour
         }
     }
 
-    private void PlaySpecialSound()
+    public void TakeDamage(float amount)
     {
-        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialSound != null)
+        if (!IsAlive) return;
+
+        currentHealth -= amount;
+        if (currentHealth <= 0) Die();
+    }
+
+    public void Die()
+    {
+        if (ScoreManager.Instance != null)
         {
-            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialSound, transform.position);
+            ScoreManager.Instance.AddScore(scoreValue);
         }
-    }
 
-    private void HandleInitialWait()
-    {
-        initialTimer += Time.deltaTime;
-        if (initialTimer >= initialWaitTime) isWaiting = false;
-    }
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialDeath != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialDeath, transform.position);
+        }
 
-    private void OrbitAroundPlayer()
-    {
-        Vector2 dir = (transform.position - player.position).normalized;
-        Vector2 desiredPos = (Vector2)player.position + dir * orbitDistance;
-
-        transform.position = Vector2.MoveTowards(transform.position, desiredPos, Time.deltaTime * 6f);
-
-        transform.RotateAround(player.position, Vector3.forward, orbitSpeed * Time.deltaTime);
-    }
-
-    private void StopMovement()
-    {
-        rb.linearVelocity = Vector2.zero;
+        currentHealth = 0;
+        OnDied?.Invoke();
+        Destroy(gameObject);
     }
 
     // ----------------------------------------------------
@@ -192,6 +180,34 @@ public class AstroSpecialist : MonoBehaviour
         canDash = true;
     }
 
+    private void PlaySpecialSound()
+    {
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialSound != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialSound, transform.position);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IDamageable playerDamageable = collision.gameObject.GetComponent<IDamageable>();
+            if (playerDamageable != null)
+            {
+                playerDamageable.TakeDamage(70f);
+            }
+            TakeDamage(20f);
+        }
+    }
+
+    private void HandleInitialWait()
+    {
+        initialTimer += Time.deltaTime;
+        if (initialTimer >= initialWaitTime) isWaiting = false;
+    }
+
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -200,21 +216,19 @@ public class AstroSpecialist : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, dashRange);
     }
-
-    public void Die()
+    private void OrbitAroundPlayer()
     {
-        if (ScoreManager.Instance != null)
-        {
-            ScoreManager.Instance.AddScore(scoreValue);
-        }
+        Vector2 dir = (transform.position - player.position).normalized;
+        Vector2 desiredPos = (Vector2)player.position + dir * orbitDistance;
 
-        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialDeath != null)
-        {
-            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialDeath, transform.position);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, desiredPos, Time.deltaTime * 6f);
 
-        currentHealth = 0;
-        OnDied?.Invoke();
-        Destroy(gameObject);
+        transform.RotateAround(player.position, Vector3.forward, orbitSpeed * Time.deltaTime);
     }
+
+    private void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
+
 }
