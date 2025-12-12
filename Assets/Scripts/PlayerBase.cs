@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Player1 : MonoBehaviour, IDamageable
 {
+
+
+    public Animator PlayerAnimator;
+    //-----------------------------------------
     public static Player1 Instance { get; private set; }
 
     public event Action<float> OnHealthChanged;
@@ -88,6 +92,10 @@ public class Player1 : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        PlayerAnimator = GetComponent<Animator>();
+
+        //---------------------------------------
+
         currentHealth = maxHealth;
         currentHealthPacks = maxHealthPacks;
         OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
@@ -128,6 +136,10 @@ public class Player1 : MonoBehaviour, IDamageable
 
     private void OnMoveStart(InputAction.CallbackContext context)
     {
+        //----------------------
+        PlayerAnimator.SetBool("IsMoving", true); //<--- animacion
+        //-------------------------
+
         if (movementAudio != null && !movementAudio.isPlaying)
         {
             movementAudio.Play();
@@ -136,6 +148,9 @@ public class Player1 : MonoBehaviour, IDamageable
 
     private void OnMoveStop(InputAction.CallbackContext context)
     {
+        //----------------------
+        PlayerAnimator.SetBool("IsMoving", false);
+        //-------------------------
         if (movementAudio != null)
         {
             movementAudio.Stop();
@@ -161,6 +176,9 @@ public class Player1 : MonoBehaviour, IDamageable
             StartCoroutine(PerformDash(dashDirection));
         }
     }
+
+
+
 
     private void FixedUpdate()
     {
