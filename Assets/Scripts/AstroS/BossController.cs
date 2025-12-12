@@ -2,8 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections;
 
+
+
+
 public class BossController : MonoBehaviour, IDamageable
 {
+    public Animator AstroObliteratorAnimator;
+
     public static BossController Instance { get; private set; }
 
     public event Action<float> OnHealthChanged;
@@ -54,6 +59,10 @@ public class BossController : MonoBehaviour, IDamageable
 
     void Start()
     {
+        //-----------------------------
+        AstroObliteratorAnimator = GetComponent<Animator>();
+        //------------------------------
+
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
 
