@@ -26,7 +26,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
     public float moveSpeed = 2f;
     public float bulletSpeed = 8f;
-    public float fireRate = 1f;
+    public float fireRate = 1.5f;
     public float attackRange = 5f;
     public float WaitTime = 2f;
 
@@ -46,12 +46,52 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     // DASH
     // ----------------------------
     public float dashRange = 3f;
-    public float dashSpeed = 12f;
-    public float dashDuration = 0.25f;
-    public float dashCooldown = 1f;
+    public float dashSpeed = 14f;
+    public float dashDuration = 0.45f;
+    public float dashWindup = 0.35f;
+    public float dashCooldown = 0.7f;
 
     private bool isDashing = false;
     private bool canDash = true;
+
+    // ----------------------------
+    // DISTANCIA Y KITING
+    // ----------------------------
+    public float preferredDistance = 4f;
+    public float preferredMargin = 0.5f;
+    public float approachSpeedPerUnit = 1.5f;
+    public float maxApproachSpeed = 8f;
+    public float minApproachSpeed = 2f;
+    public float fleeSpeedPerUnit = 3f;
+    public float minFleeSpeed = 2f;
+
+    // ----------------------------
+    // IA - MODO DE COMBATE
+    // ----------------------------
+    public float shootTime = 6f;
+    private float shootTimer = 0f;
+
+    public int maxCharges = 3;
+    private int dashCount = 5;
+
+    // Rango para intentar embestir: si el jugador se aleja y sale de aquí,
+    // el trooper abandona la embestida y vuelve a disparar
+    public float chargeGiveUpRange = 5f;
+    public float chargeAdvanceSpeed = 6f;
+
+    // ----------------------------
+    // RETROCESO
+    // ----------------------------
+    public float retreatSpeed = 16f;
+    public float retreatDuration = 0.5f;
+    public float retreatCooldown = 1f;
+    private bool isRetreating = false;
+
+    // ----------------------------
+    // ESTADO
+    // ----------------------------
+    private enum CombatMode { Shooting, Charging, Retreating }
+    private CombatMode currentMode = CombatMode.Shooting;
 
     // ----------------------------
 
@@ -125,60 +165,151 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         }
 
         // ----------------------------
-        // DASH
+        // MÁQUINA DE ESTADOS
         // ----------------------------
-        if (!isDashing && canDash && distanceToPlayer <= dashRange)
+        switch (currentMode)
         {
-            StartCoroutine(DoDash());
-        }
+            case CombatMode.Shooting:
+                HandleShootingMode(distanceToPlayer);
+                break;
 
-        // Si está dashing, NO mover hacia otro lado
-        if (isDashing)
-            return;
+            case CombatMode.Charging:
+                HandleChargingMode(distanceToPlayer);
+                break;
 
-        // ----------------------------
-        // FOLLOW
-        // ----------------------------
-        if (distanceToPlayer < attackRange)
-        {
-            ChasePlayer();
+            case CombatMode.Retreating:
+                if (!isRetreating)
+                    StartCoroutine(DoRetreat());
+                return;
         }
-        else
-        {
-            StopMovement();
-        }
+    }
 
-        // ----------------------------
-        // SHOOT
-        // ----------------------------
+    // ----------------------------
+    // MODO 1: DISPARAR A DISTANCIA
+    // ----------------------------
+    private void HandleShootingMode(float distanceToPlayer)
+    {
+        shootTimer += Time.deltaTime;
+
+        // Mantener distancia preferida
+        MoveToPreferredDistance(distanceToPlayer);
+
+        // Disparar
         if (fireTimer >= fireRate && distanceToPlayer <= attackRange)
         {
             PerformShoot();
             fireTimer = 0f;
         }
+
+        // Después de disparar un rato, decide embestir
+        // Solo si el jugador sigue dentro del rango para embestir
+        if (shootTimer >= shootTime && distanceToPlayer <= chargeGiveUpRange)
+        {
+            shootTimer = 0f;
+            dashCount = 0;
+            currentMode = CombatMode.Charging;
+        }
     }
+
+    // ----------------------------
+    // MODO 2: EMBESTIR (CHARGING)
+    // ----------------------------
+    private void HandleChargingMode(float distanceToPlayer)
+    {
+        // Si ya agotó las embestidas, retroceder
+        if (dashCount >= maxCharges)
+        {
+            currentMode = CombatMode.Retreating;
+            return;
+        }
+
+        // Durante el dash no hace nada más
+        if (isDashing)
+            return;
+
+        // El jugador se alejó fuera del rango para embestir -> abandonar y volver a disparar
+        if (distanceToPlayer > chargeGiveUpRange)
+        {
+            AbortCharge();
+            return;
+        }
+
+        // Embistir si el jugador está en rango
+        if (canDash && distanceToPlayer <= dashRange)
+        {
+            StartCoroutine(DoDash());
+            return;
+        }
+
+        // Aún no está dentro del rango de dash -> se acerca rápido para intentar embestir
+        if (distanceToPlayer > dashRange)
+        {
+            rb.linearVelocity = (jugador.transform.position - transform.position).normalized * chargeAdvanceSpeed;
+        }
+        else
+        {
+            // Dentro del rango pero en cooldown del dash -> esperar quieto
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    // ----------------------------
+    // ABANDONAR LA EMBESTIDA
+    // ----------------------------
+    private void AbortCharge()
+    {
+        dashCount = 0;
+        shootTimer = 0f;
+        isDashing = false;
+        canDash = true;
+        rb.linearVelocity = Vector2.zero;
+        currentMode = CombatMode.Shooting;
+    }
+
+    // ----------------------------
+    // MANTENER DISTANCIA PREFERIDA
+    // ----------------------------
+    private void MoveToPreferredDistance(float distanceToPlayer)
+    {
+        Vector3 dirAway = (transform.position - jugador.transform.position).normalized;
+        Vector3 dirToPlayer = (jugador.transform.position - transform.position).normalized;
+
+        float diff = distanceToPlayer - preferredDistance;
+
+        if (diff > preferredMargin)
+        {
+            // Muy lejos -> acercarse, MÁS RÁPIDO cuanto más lejos esté el jugador
+            float speed = GetApproachSpeed(distanceToPlayer);
+            rb.linearVelocity = dirToPlayer * speed;
+        }
+        else if (diff < -preferredMargin)
+        {
+            // Muy cerca -> huir, MÁS RÁPIDO cuanto más cerca esté el jugador
+            float speed = Mathf.Clamp(-diff * fleeSpeedPerUnit, minFleeSpeed, retreatSpeed);
+            rb.linearVelocity = dirAway * speed;
+        }
+        else
+        {
+            // En distancia ideal -> quedarse quieto y disparar
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    // Velocidad de aproximación proporcional a la distancia del jugador
+    private float GetApproachSpeed(float distanceToPlayer)
+    {
+        float diff = distanceToPlayer - preferredDistance;
+        return Mathf.Clamp(diff * approachSpeedPerUnit, minApproachSpeed, maxApproachSpeed);
+    }
+
     // ANMACION DEL DASH
     // ----------------------------
     public void FixedUpdate()
     {
-        if (TrooperAnimator != null && isDashing)
+        if (TrooperAnimator != null)
         {
-            TrooperAnimator.SetBool("IsCharging", true);
-        }
-        if (TrooperAnimator != null && !isDashing)
-        {
-            TrooperAnimator.SetBool("IsCharging", false);
-        }
-
-        //--------------------------
-
-        if (TrooperAnimator != null && IsShooting)
-        {
-            TrooperAnimator.SetBool("IsShooting", true);
-        }
-        if (TrooperAnimator != null && !IsShooting)
-        {
-            TrooperAnimator.SetBool("IsShooting", false);
+            TrooperAnimator.SetBool("IsCharging", isDashing);
+            TrooperAnimator.SetBool("IsShooting", IsShooting);
         }
     }
 
@@ -220,18 +351,6 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         }
     }
 
-    // FOLLOW
-    private void ChasePlayer()
-    {
-        Vector3 direction = (jugador.transform.position - transform.position).normalized;
-        rb.linearVelocity = direction * moveSpeed;
-    }
-
-    private void StopMovement()
-    {
-        rb.linearVelocity = Vector2.zero;
-    }
-
     // SHOOT
     private void PerformShoot()
     {
@@ -268,8 +387,33 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         isDashing = true;
         canDash = false;
 
-        Vector2 dashDir = (jugador.transform.position - transform.position).normalized;
+        // FASE 1: viento / preparación (animación de embestida, sin moverse)
+        rb.linearVelocity = Vector2.zero;
 
+        yield return new WaitForSeconds(dashWindup);
+
+        // Si el jugador se alejó durante el viento -> abandonar la embestida
+        if (Vector2.Distance(transform.position, jugador.transform.position) > chargeGiveUpRange)
+        {
+            rb.linearVelocity = Vector2.zero;
+            AbortCharge();
+            yield break;
+        }
+
+        // FASE 2: dash hacia un punto MÁS ALLÁ del jugador (lo atraviesa)
+        Vector2 trooperPos = transform.position;
+        Vector2 playerPos = jugador.transform.position;
+
+        Vector2 toPlayer = playerPos - trooperPos;
+        Vector2 dashDir = toPlayer.normalized;
+
+        // Caso degenerado: si el jugador está justo encima, usar dirección por defecto
+        if (dashDir.sqrMagnitude < 0.001f)
+        {
+            dashDir = Vector2.up;
+        }
+
+        // La dirección queda fija: atraviesa al jugador y pasa de largo
         rb.linearVelocity = dashDir * dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
@@ -278,9 +422,43 @@ public class AstroTrooper : MonoBehaviour, IDamageable
 
         isDashing = false;
 
+        dashCount++;
+
+        if (dashCount >= maxCharges)
+        {
+            currentMode = CombatMode.Retreating;
+            yield break;
+        }
+
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+    }
+
+    // ----------------------------
+    // RETREAT (COROUTINE)
+    // ----------------------------
+    private System.Collections.IEnumerator DoRetreat()
+    {
+        isRetreating = true;
+        canDash = false;
+
+        Vector2 retreatDir = (transform.position - jugador.transform.position).normalized;
+
+        rb.linearVelocity = retreatDir * retreatSpeed;
+
+        yield return new WaitForSeconds(retreatDuration);
+
+        rb.linearVelocity = Vector2.zero;
+
+        yield return new WaitForSeconds(retreatCooldown);
+
+        // Reset para volver al modo de disparo
+        dashCount = 0;
+        shootTimer = 0f;
+        canDash = true;
+        isRetreating = false;
+        currentMode = CombatMode.Shooting;
     }
 
 
@@ -288,6 +466,12 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, chargeGiveUpRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, preferredDistance);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, dashRange);

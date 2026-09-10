@@ -245,5 +245,6 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
             Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.StriderDeath, transform.position);
         }
 
+        Destroy(gameObject);
     }
 }

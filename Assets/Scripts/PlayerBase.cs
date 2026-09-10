@@ -46,12 +46,22 @@ public class Player1 : MonoBehaviour, IDamageable
     private int currentHealthPacks;
     public int MaxHealthPacks => maxHealthPacks;
 
+    [Header("Dash")]
     public float dashForce = 25f;
     public float dashDuration = 0.15f;
     public float dashCooldown = 1f;
 
     private bool isDashing = false;
     private bool isOnCooldown = false;
+
+    [Header("Sprint")]
+    public float sprintMultiplier = 1.8f;
+    public float maxStamina = 100f;
+    public float staminaDrainRate = 20f;
+    public float staminaRegenRate = 10f;
+
+    private float currentStamina;
+    private bool isSprinting = false;
 
     public GameObject bulletPrefab;
     public float bulletSpeed = 15;
@@ -97,6 +107,7 @@ public class Player1 : MonoBehaviour, IDamageable
         //---------------------------------------
 
         currentHealth = maxHealth;
+        currentStamina = maxStamina;
         currentHealthPacks = maxHealthPacks;
         OnHealthPackChanged?.Invoke(currentHealthPacks, maxHealthPacks);
         StartCoroutine(RegenerateHealthPack());
@@ -129,7 +140,10 @@ public class Player1 : MonoBehaviour, IDamageable
         inputs.Player.Move.canceled += OnMove;
         inputs.Player.Move.canceled += OnMoveStop;
 
-        inputs.Player.Sprint.performed += OnDash;
+        inputs.Player.Sprint.started += OnSprintStarted;
+        inputs.Player.Sprint.canceled += OnSprintCanceled;
+
+        inputs.Player.Dash.performed += OnDash;
 
         inputs.Player.Fire.performed += OnFire;
     }
@@ -163,8 +177,23 @@ public class Player1 : MonoBehaviour, IDamageable
         moveInput = context.ReadValue<Vector2>();
     }
 
+    private void OnSprintStarted(InputAction.CallbackContext context)
+    {
+        if (currentStamina > 0f)
+        {
+            isSprinting = true;
+        }
+    }
+
+    private void OnSprintCanceled(InputAction.CallbackContext context)
+    {
+        isSprinting = false;
+    }
+
     private void OnDash(InputAction.CallbackContext context)
     {
+        Debug.LogWarning("Esta dasheando");
+
         if (!isDashing && !isOnCooldown)
         {
             Vector2 dashDirection = moveInput.normalized;
@@ -176,6 +205,20 @@ public class Player1 : MonoBehaviour, IDamageable
             }
             StartCoroutine(PerformDash(dashDirection));
         }
+    }
+
+    private IEnumerator PerformDash(Vector2 direction)
+    {
+        isDashing = true;
+        isOnCooldown = true;
+
+        rb.linearVelocity = direction * dashForce;
+
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        isOnCooldown = false;
     }
 
 
@@ -194,7 +237,8 @@ public class Player1 : MonoBehaviour, IDamageable
         {
             return;
         }
-        Vector2 targetVelocity = moveInput * speed;
+        float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
+        Vector2 targetVelocity = moveInput * currentSpeed;
         rb.linearVelocity = targetVelocity;
     }
 
@@ -208,7 +252,10 @@ public class Player1 : MonoBehaviour, IDamageable
         inputs.Player.Move.canceled -= OnMove;
         inputs.Player.Move.canceled -= OnMoveStop;
 
-        inputs.Player.Sprint.performed -= OnDash;
+        inputs.Player.Sprint.started -= OnSprintStarted;
+        inputs.Player.Sprint.canceled -= OnSprintCanceled;
+
+        inputs.Player.Dash.performed -= OnDash;
         inputs.Player.Fire.performed -= OnFire;
 
         inputs.Disable();
@@ -217,20 +264,6 @@ public class Player1 : MonoBehaviour, IDamageable
         {
             movementAudio.Stop();
         }
-    }
-
-    private IEnumerator PerformDash(Vector2 direction)
-    {
-        isDashing = true;
-        isOnCooldown = true;
-
-        rb.linearVelocity = direction * dashForce;
-
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
-
-        yield return new WaitForSeconds(dashCooldown);
-        isOnCooldown = false;
     }
 
     private void OnFire(InputAction.CallbackContext context)
@@ -269,6 +302,32 @@ public class Player1 : MonoBehaviour, IDamageable
         if(Input.GetKeyDown(KeyCode.E))
         {
             UseHealthPack();
+        }
+
+        HandleStamina();
+    }
+
+    private void HandleStamina()
+    {
+        if (isSprinting && moveInput.magnitude > 0f)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            if (currentStamina <= 0f)
+            {
+                currentStamina = 0f;
+                isSprinting = false;
+            }
+        }
+        else
+        {
+            if (currentStamina < maxStamina)
+            {
+                currentStamina += staminaRegenRate * Time.deltaTime;
+                if (currentStamina > maxStamina)
+                {
+                    currentStamina = maxStamina;
+                }
+            }
         }
     }
 
