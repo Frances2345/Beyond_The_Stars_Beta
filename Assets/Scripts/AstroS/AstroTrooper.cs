@@ -72,12 +72,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     private float shootTimer = 0f;
 
     public int maxCharges = 3;
-    private int dashCount = 5;
-
-    // Rango para intentar embestir: si el jugador se aleja y sale de aquí,
-    // el trooper abandona la embestida y vuelve a disparar
-    public float chargeGiveUpRange = 5f;
-    public float chargeAdvanceSpeed = 6f;
+    private int dashCount = 0;
+    private float chargeCooldownTimer = 0f;
+    public float chargeCooldown = 1.5f;
 
     // ----------------------------
     // RETROCESO
@@ -190,6 +187,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     private void HandleShootingMode(float distanceToPlayer)
     {
         shootTimer += Time.deltaTime;
+        chargeCooldownTimer += Time.deltaTime;
 
         // Mantener distancia preferida
         MoveToPreferredDistance(distanceToPlayer);
@@ -201,11 +199,11 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             fireTimer = 0f;
         }
 
-        // Después de disparar un rato, decide embestir
-        // Solo si el jugador sigue dentro del rango para embestir
-        if (shootTimer >= shootTime && distanceToPlayer <= chargeGiveUpRange)
+        // Después de disparar un rato, decide embestir si el jugador está en rango
+        if (shootTimer >= shootTime && distanceToPlayer <= dashRange && chargeCooldownTimer >= chargeCooldown)
         {
             shootTimer = 0f;
+            chargeCooldownTimer = 0f;
             dashCount = 0;
             currentMode = CombatMode.Charging;
         }
@@ -227,28 +225,21 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         if (isDashing)
             return;
 
-        // El jugador se alejó fuera del rango para embestir -> abandonar y volver a disparar
-        if (distanceToPlayer > chargeGiveUpRange)
+        // El jugador se alejó fuera del rango de dash -> volver a disparar
+        if (distanceToPlayer > dashRange)
         {
             AbortCharge();
             return;
         }
 
-        // Embistir si el jugador está en rango
-        if (canDash && distanceToPlayer <= dashRange)
+        // Dentro del rango -> embestir si puede, si no esperar el cooldown
+        if (canDash)
         {
+            rb.linearVelocity = Vector2.zero;
             StartCoroutine(DoDash());
-            return;
-        }
-
-        // Aún no está dentro del rango de dash -> se acerca rápido para intentar embestir
-        if (distanceToPlayer > dashRange)
-        {
-            rb.linearVelocity = (jugador.transform.position - transform.position).normalized * chargeAdvanceSpeed;
         }
         else
         {
-            // Dentro del rango pero en cooldown del dash -> esperar quieto
             rb.linearVelocity = Vector2.zero;
         }
     }
@@ -260,6 +251,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     {
         dashCount = 0;
         shootTimer = 0f;
+        chargeCooldownTimer = 0f;
         isDashing = false;
         canDash = true;
         rb.linearVelocity = Vector2.zero;
@@ -393,7 +385,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(dashWindup);
 
         // Si el jugador se alejó durante el viento -> abandonar la embestida
-        if (Vector2.Distance(transform.position, jugador.transform.position) > chargeGiveUpRange)
+        if (Vector2.Distance(transform.position, jugador.transform.position) > dashRange)
         {
             rb.linearVelocity = Vector2.zero;
             AbortCharge();
@@ -466,9 +458,6 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, chargeGiveUpRange);
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, preferredDistance);
