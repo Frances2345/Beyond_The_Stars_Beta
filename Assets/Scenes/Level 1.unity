@@ -9432,10 +9432,10 @@ MonoBehaviour:
   astroTrooperCooldown: 7
   astroTrooperTimer: 0
   AstroSpecialistPrefab: {fileID: 354262715}
-  AstroSpecialistCooldown: 13
+  AstroSpecialistCooldown: 16
   AstroSpecialistTimer: 0
   AstroStriderPrefab: {fileID: 736978574}
-  AstroStriderCooldown: 17
+  AstroStriderCooldown: 20
   AstroStriderTimer: 0
 --- !u!114 &1738022909
 MonoBehaviour:
