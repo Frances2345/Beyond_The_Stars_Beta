@@ -28,17 +28,52 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
     public float moveSpeed = 2f;
     public float bulletSpeed = 8f;
     public float fireRate = 1f;
-    public float attackRange = 5f;
+    public float attackRange = 130f;
     public float WaitTime = 2f;
 
     private bool isWaiting = true;
-    private float fireTimer = 0f;
     private float initialTimer = 0f;
     private bool isSoundActive = false;
 
     // ----------------------------
-    // BOOLEANO PARA ANIMACIONES
+    // BOOLEANOS PARA ANIMACIONES
     public bool IsShooting = false;
+    public bool IsCharging = false;
+    // ----------------------------
+
+    // ----------------------------
+    // NUEVO COMPORTAMIENTO: ORBITAR, CARGAR Y DISPARAR
+    // Radio orbital alrededor del jugador (distancia mín/máx)
+    public float orbitRadiusMin = 80f;
+    public float orbitRadiusMax = 90f;
+    // Tiempo quieto cargando el disparo
+    public float chargeDuration = 1.5f;
+    // Pausa tras disparar antes de reposicionarse
+    public float postShotPause = 0.75f;
+    // Tolerancia para considerar que llegó al punto de reposición
+    public float reachDistance = 0.5f;
+    // Tiempo máximo moviéndose antes de quedarse quieto y cargar
+    public float moveTime = 3.5f;
+    // ----------------------------
+
+    // ----------------------------
+    // ESQUIVA DE ASTEROIDES
+    // ----------------------------
+    public float avoidanceDistance = 12f;
+    public float avoidanceRadius = 5f;
+    // ----------------------------
+
+    // ----------------------------
+    // MÁQUINA DE ESTADOS
+    // ----------------------------
+    private enum StriderMode { Repositioning, Charging, Paused }
+    private StriderMode currentMode = StriderMode.Repositioning;
+
+    // Punto objetivo fijo (congelado al elegirlo) alrededor del jugador
+    private Vector2 repositionTarget;
+    private float chargeTimer = 0f;
+    private float pauseTimer = 0f;
+    private float repositionTimer = 0f;
     // ----------------------------
 
     void Start()
@@ -108,7 +143,6 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
         {
             return;
         }
-        fireTimer += Time.deltaTime;
 
         if (!IsShieldActive)
         {
@@ -140,18 +174,29 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
             isSoundActive = false;
         }
 
-        if (distanceToPlayer < attackRange)
+        // Fuera de alcance: acercarse directamente al jugador
+        if (distanceToPlayer > attackRange)
         {
-            ChasePlayer();
+            MoveTowardPlayer();
+            return;
         }
-        else
+
+        // ----------------------------
+        // MÁQUINA DE ESTADOS
+        // ----------------------------
+        switch (currentMode)
         {
-            StopMovement();
-        }
-        if (fireTimer >= fireRate && distanceToPlayer <= attackRange)
-        {
-            PerformShoot();
-            fireTimer = 0f;
+            case StriderMode.Repositioning:
+                HandleRepositioning();
+                break;
+
+            case StriderMode.Charging:
+                HandleCharging();
+                break;
+
+            case StriderMode.Paused:
+                HandlePaused();
+                break;
         }
     }
     private void PlayAstroSound()
@@ -166,27 +211,160 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
     {
         initialTimer += Time.deltaTime;
 
-        if (fireTimer >= fireRate)
-        {
-            PerformShoot();
-            fireTimer = 0f;
-        }
-
         if (initialTimer >= WaitTime)
         {
             isWaiting = false;
+            StartRepositioning();
         }
     }
 
-    private void ChasePlayer()
+    // ----------------------------
+    // MODO 1: MOVERSE ALREDEDOR DEL JUGADOR
+    // ----------------------------
+    private void HandleRepositioning()
     {
-        Vector3 direction = (jugador.transform.position - transform.position).normalized;
-        rb.linearVelocity = direction * moveSpeed;
+        IsCharging = false;
+        IsShooting = false;
+
+        repositionTimer += Time.deltaTime;
+
+        // Tiempo de movimiento cumplido: quedarse quieto y cargar el disparo
+        if (repositionTimer >= moveTime)
+        {
+            rb.linearVelocity = Vector2.zero;
+            chargeTimer = 0f;
+            currentMode = StriderMode.Charging;
+            return;
+        }
+
+        Vector2 toPlayer = (Vector2)jugador.transform.position - (Vector2)transform.position;
+        float distanceToPlayer = toPlayer.magnitude;
+
+        // No acercarse más del radio mínimo: empujarse hacia afuera
+        if (distanceToPlayer < orbitRadiusMin)
+        {
+            Vector2 awayDir = -toPlayer.normalized;
+            rb.linearVelocity = SteerVelocity(awayDir) * moveSpeed;
+            return;
+        }
+
+        Vector2 target = repositionTarget;
+
+        // El punto objetivo no puede quedar dentro del anillo según el jugador actual
+        Vector2 playerToTarget = target - (Vector2)jugador.transform.position;
+        if (playerToTarget.magnitude < orbitRadiusMin)
+        {
+            target = (Vector2)jugador.transform.position + playerToTarget.normalized * orbitRadiusMin;
+        }
+
+        Vector2 toTarget = target - (Vector2)transform.position;
+
+        // Llegó al punto: quedarse quieto y cargar el disparo
+        if (toTarget.magnitude <= reachDistance)
+        {
+            rb.linearVelocity = Vector2.zero;
+            chargeTimer = 0f;
+            currentMode = StriderMode.Charging;
+            return;
+        }
+
+        rb.linearVelocity = SteerVelocity(toTarget.normalized) * moveSpeed;
     }
 
-    private void StopMovement()
+    // Punto aleatorio (dirección + radio) fijado alrededor del jugador en ese instante
+    private void PickNewOrbitPosition()
+    {
+        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
+        float radius = UnityEngine.Random.Range(orbitRadiusMin, orbitRadiusMax);
+        repositionTarget = (Vector2)jugador.transform.position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+    }
+
+    private void StartRepositioning()
+    {
+        repositionTimer = 0f;
+        PickNewOrbitPosition();
+        currentMode = StriderMode.Repositioning;
+    }
+
+    // Evita asteroides que estén en la trayectoria desviando la dirección
+    private Vector2 SteerVelocity(Vector2 moveDir)
+    {
+        if (moveDir.sqrMagnitude < 0.001f) return moveDir;
+
+        float step = avoidanceRadius;
+
+        // Muestrea puntos por delante en la dirección de movimiento
+        for (float d = avoidanceRadius; d <= avoidanceDistance; d += step)
+        {
+            Vector2 point = (Vector2)transform.position + moveDir * d;
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(point, avoidanceRadius);
+            foreach (Collider2D hit in hits)
+            {
+                if (hit == null || !hit.CompareTag("Asteroid")) continue;
+
+                // Asteroide delante: virar en perpendicular y alejándose
+                Vector2 toAsteroid = (Vector2)hit.transform.position - (Vector2)transform.position;
+                if (toAsteroid.sqrMagnitude < 0.001f) continue;
+
+                Vector2 tangent = new Vector2(-toAsteroid.y, toAsteroid.x).normalized;
+                float side = Vector2.Dot(tangent, moveDir) >= 0f ? 1f : -1f;
+
+                moveDir = (moveDir * 0.4f + tangent * side * 1.2f).normalized;
+                break;
+            }
+        }
+
+        return moveDir;
+    }
+
+    // ----------------------------
+    // MODO 2: QUIETO CARGANDO EL DISPARO
+    // ----------------------------
+    private void HandleCharging()
     {
         rb.linearVelocity = Vector2.zero;
+        IsCharging = true;
+        IsShooting = false;
+
+        chargeTimer += Time.deltaTime;
+
+        if (chargeTimer >= chargeDuration)
+        {
+            PerformShoot();
+            chargeTimer = 0f;
+            pauseTimer = 0f;
+            currentMode = StriderMode.Paused;
+        }
+    }
+
+    // ----------------------------
+    // MODO 3: BREVE PAUSA TRAS DISPARAR
+    // ----------------------------
+    private void HandlePaused()
+    {
+        rb.linearVelocity = Vector2.zero;
+        IsCharging = false;
+        IsShooting = false;
+
+        pauseTimer += Time.deltaTime;
+
+        if (pauseTimer >= postShotPause)
+        {
+            // Reposicionarse en un punto nuevo y aleatorio
+            StartRepositioning();
+        }
+    }
+
+    // Acercarse directamente al jugador si está fuera de alcance
+    private void MoveTowardPlayer()
+    {
+        IsCharging = false;
+        IsShooting = false;
+
+        Vector3 direction = (jugador.transform.position - transform.position).normalized;
+        rb.linearVelocity = SteerVelocity(direction) * moveSpeed;
+        currentMode = StriderMode.Repositioning;
     }
 
     private void PerformShoot()
@@ -228,6 +406,13 @@ public class AstroStrider : MonoBehaviour, IDamageable, IDefendable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, orbitRadiusMin);
+        Gizmos.DrawWireSphere(transform.position, orbitRadiusMax);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere((Vector3)repositionTarget, 0.5f);
     }
 
     public void Die()

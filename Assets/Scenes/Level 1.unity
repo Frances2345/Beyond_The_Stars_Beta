@@ -3361,7 +3361,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.098285586, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.09435931, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8032,7 +8032,7 @@ Transform:
   m_GameObject: {fileID: 1553450951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.098285586, y: -2.178499, z: -10}
+  m_LocalPosition: {x: -0.09435931, y: -2.178499, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9264,7 +9264,7 @@ MonoBehaviour:
   staminaDrainRate: 20
   staminaRegenRate: 10
   bulletPrefab: {fileID: 7082029783311075945, guid: 652570c97187b5b46b2eb61d4a4a1111, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 70
   speed: 24
   rb: {fileID: 1738022907}
 --- !u!212 &1738022904
@@ -63779,11 +63779,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 918072217343727317, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
       propertyPath: attackRange
-      value: 55
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 918072217343727317, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
       propertyPath: bulletSpeed
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: attackRange
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 4536164769012720496, guid: 5e34e7aecf128334a931431d12bc669e, type: 3}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: orbitRadiusMax
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443813057388679331, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
+      propertyPath: orbitRadiusMin
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6147026155244457653, guid: 33b5cd4b36403e443b1a2c4d170d47d5, type: 3}
       propertyPath: m_IsTrigger
@@ -63884,7 +63904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: bulletSpeed
-      value: 50
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 5024826890722359995, guid: 14488e1c56f60f24183379ca9a97cd58, type: 3}
       propertyPath: retreatCooldown
