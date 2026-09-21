@@ -35,6 +35,18 @@ public class BulletEnemy : MonoBehaviour, IAttackable
             return;
         }
 
+        // Las balas de enemigos tambien dañan asteroides
+        if (collision.CompareTag("Asteroid"))
+        {
+            IDamageable asteroid = collision.GetComponent<IDamageable>();
+            if (asteroid != null)
+            {
+                asteroid.TakeDamage(DamageAmount);
+                Destroy(gameObject);
+            }
+            return;
+        }
+
         IDamageable target = collision.GetComponent<IDamageable>();
 
         if (target != null && collision.CompareTag("Player"))
