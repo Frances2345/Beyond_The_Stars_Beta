@@ -64079,6 +64079,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1738022905}
     - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: avoidanceRadius
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
+      propertyPath: avoidanceStrength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028960618641792967, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
       propertyPath: AstroSpecialistAnimator
       value: 
       objectReference: {fileID: 354262727}

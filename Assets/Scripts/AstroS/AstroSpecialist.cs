@@ -35,6 +35,10 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
     public float dashCooldown = 1f;
     public float dashForce = 20f;
 
+    [Header("Esquiva de Asteroides")]
+    public float avoidanceRadius = 7f;
+    public float avoidanceStrength = 10f;
+
     private bool isWaiting = true;
     private float initialTimer = 0f;
 
@@ -215,6 +219,9 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, dashRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, avoidanceRadius);
     }
     private void OrbitAroundPlayer()
     {
@@ -224,6 +231,33 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         transform.position = Vector2.MoveTowards(transform.position, desiredPos, Time.deltaTime * 6f);
 
         transform.RotateAround(player.position, Vector3.forward, orbitSpeed * Time.deltaTime);
+
+        // Esquiva de asteroides: empuja al specialist fuera de asteroides cercanos
+        Vector2 avoid = ObstacleAvoidanceOffset();
+        transform.position += (Vector3)avoid * Time.deltaTime;
+    }
+
+    // Repulsión reactiva desde los asteroides cercanos
+    private Vector2 ObstacleAvoidanceOffset()
+    {
+        Vector2 offset = Vector2.zero;
+        int count = 0;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit == null || !hit.CompareTag("Asteroid")) continue;
+
+            Vector2 away = (Vector2)transform.position - (Vector2)hit.transform.position;
+            if (away.sqrMagnitude < 0.001f) continue;
+
+            // Mientras más cerca está el asteroide, más fuerte el empuje
+            float influence = 1f - Mathf.Clamp01(away.magnitude / avoidanceRadius);
+            offset += away.normalized * influence * avoidanceStrength;
+            count++;
+        }
+
+        return count > 0 ? offset / count : Vector2.zero;
     }
 
     private void StopMovement()

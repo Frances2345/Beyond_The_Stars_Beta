@@ -119,6 +119,8 @@ MonoBehaviour:
   dashCooldown: 6
   dashForce: 150
   IsCharging: 0
+  avoidanceRadius: 7
+  avoidanceStrength: 10
 --- !u!50 &-2368120764104376192
 Rigidbody2D:
   serializedVersion: 5
