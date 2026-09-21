@@ -70,6 +70,12 @@ public class Player1 : MonoBehaviour, IDamageable
     public float speed = 12f;
     public Rigidbody2D rb;
 
+    [Header("Knockback")]
+    public float knockbackDuration = 0.15f;
+    private Vector2 knockbackDirection = Vector2.zero;
+    private float knockbackForce = 0f;
+    private float knockbackTimer = 0f;
+
     private AudioSource movementAudio;
     private void Awake()
     {
@@ -226,10 +232,26 @@ public class Player1 : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
+        if (knockbackTimer > 0f)
+        {
+            rb.linearVelocity = knockbackDirection * knockbackForce;
+            knockbackTimer -= Time.fixedDeltaTime;
+            return;
+        }
+
         if (!isDashing)
         {
             MovementController();
         }
+    }
+
+    public void ApplyKnockback(Vector2 direction, float force)
+    {
+        if (!IsAlive || force <= 0f) return;
+
+        knockbackDirection = direction.normalized;
+        knockbackForce = force;
+        knockbackTimer = knockbackDuration;
     }
     public void MovementController()
     {
