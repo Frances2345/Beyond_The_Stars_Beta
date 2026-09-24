@@ -55,6 +55,14 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     private bool canDash = true;
 
     // ----------------------------
+    // DAÑO Y KNOCKBACK DE EMBESTIDA
+    // ----------------------------
+    public float dashDamage = 60f;
+    public float dashKnockbackForce = 200f;
+    private bool hitPlayerThisDash = false;
+    private Collider2D trooperCollider;
+
+    // ----------------------------
     // DISTANCIA Y KITING
     // ----------------------------
     public float preferredDistance = 4f;
@@ -100,6 +108,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     void Start()
     {
         TrooperAnimator = GetComponent<Animator>();
+        trooperCollider = GetComponent<Collider2D>();
 
         //------------------------------
 
@@ -249,6 +258,16 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     // ----------------------------
     private void AbortCharge()
     {
+        // Restaurar colisiones si estábamos en mitad del dash
+        if (trooperCollider != null && jugador != null)
+        {
+            Collider2D playerCol = jugador.GetComponent<Collider2D>();
+            if (playerCol != null)
+            {
+                Physics2D.IgnoreCollision(trooperCollider, playerCol, false);
+            }
+        }
+
         dashCount = 0;
         shootTimer = 0f;
         chargeCooldownTimer = 0f;
@@ -302,6 +321,25 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         {
             TrooperAnimator.SetBool("IsCharging", isDashing);
             TrooperAnimator.SetBool("IsShooting", IsShooting);
+        }
+
+        if (isDashing && !hitPlayerThisDash && rb.linearVelocity.sqrMagnitude > 0.01f)
+        {
+            Vector2 dir = rb.linearVelocity.normalized;
+            float checkRadius = 1.5f;
+            Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + dir * 1f, checkRadius);
+            foreach (Collider2D hit in hits)
+            {
+                if (!hit.CompareTag("Player")) continue;
+
+                Player1 playerHit = hit.GetComponent<Player1>();
+                if (playerHit == null) continue;
+
+                hitPlayerThisDash = true;
+                playerHit.TakeDamage(dashDamage);
+                playerHit.ApplyKnockback(dir, dashKnockbackForce);
+                break;
+            }
         }
     }
 
@@ -378,6 +416,7 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     {
         isDashing = true;
         canDash = false;
+        hitPlayerThisDash = false;
 
         // FASE 1: viento / preparación (animación de embestida, sin moverse)
         rb.linearVelocity = Vector2.zero;
@@ -405,6 +444,16 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             dashDir = Vector2.up;
         }
 
+        // Desactivar colisiones con el jugador durante el dash para asegurar que atraviesa (evita bloqueo)
+        if (trooperCollider != null && jugador != null)
+        {
+            Collider2D playerCol = jugador.GetComponent<Collider2D>();
+            if (playerCol != null)
+            {
+                Physics2D.IgnoreCollision(trooperCollider, playerCol, true);
+            }
+        }
+
         // La dirección queda fija: atraviesa al jugador y pasa de largo
         rb.linearVelocity = dashDir * dashSpeed;
 
@@ -413,6 +462,16 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         rb.linearVelocity = Vector2.zero;
 
         isDashing = false;
+
+        // Restaurar colisiones con el jugador
+        if (trooperCollider != null && jugador != null)
+        {
+            Collider2D playerCol = jugador.GetComponent<Collider2D>();
+            if (playerCol != null)
+            {
+                Physics2D.IgnoreCollision(trooperCollider, playerCol, false);
+            }
+        }
 
         dashCount++;
 
@@ -425,6 +484,41 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+    }
+
+    // ----------------------------
+    // COLISIÓN DEL DASH (daño + empujón)
+    // ----------------------------
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isDashing || hitPlayerThisDash) return;
+
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        Player1 player = collision.gameObject.GetComponent<Player1>();
+        if (player == null) return;
+
+        hitPlayerThisDash = true;
+
+        player.TakeDamage(dashDamage);
+
+        Vector2 dashDirection = rb.linearVelocity.normalized;
+        if (dashDirection.sqrMagnitude < 0.001f)
+        {
+            dashDirection = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+        }
+
+        player.ApplyKnockback(dashDirection, dashKnockbackForce);
+
+        // Restaurar colisión inmediatamente tras golpear
+        if (trooperCollider != null)
+        {
+            Collider2D playerCol = collision.collider;
+            if (playerCol != null)
+            {
+                Physics2D.IgnoreCollision(trooperCollider, playerCol, false);
+            }
+        }
     }
 
     // ----------------------------
