@@ -176,5 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 120
+  damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 8
   visionRange: 20

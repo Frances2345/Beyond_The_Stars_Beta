@@ -951,6 +951,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &64656824
@@ -1131,6 +1132,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 30
   visionRange: 20
 --- !u!61 &76495256
@@ -1711,6 +1713,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &245764681
@@ -3957,6 +3960,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &631922699
@@ -5337,6 +5341,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &921261865
@@ -340145,6 +340150,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &1836296251
@@ -340902,6 +340908,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &1913269469
@@ -341549,6 +341556,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &2045522339
@@ -342339,6 +342347,7 @@ MonoBehaviour:
   maxHealth: 120
   scoreValue: 750
   damageToPlayer: 170
+  specialistPrefab: {fileID: 250332384062263893, guid: f1f7e3a2e3454164f9d7e84e77f75564, type: 3}
   fallSpeed: 120
   visionRange: 15.8
 --- !u!61 &2120507348

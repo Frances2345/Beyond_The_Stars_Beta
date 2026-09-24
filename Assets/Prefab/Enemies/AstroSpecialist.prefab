@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7656096809510908097}
   - component: {fileID: 8718191127599902071}
   - component: {fileID: 2929906180453582931}
+  - component: {fileID: 909090909090909090}
   m_Layer: 0
   m_Name: AstroSpecialist
   m_TagString: Enemy
@@ -121,6 +122,11 @@ MonoBehaviour:
   IsCharging: 0
   avoidanceRadius: 7
   avoidanceStrength: 10
+  bulletPrefab: {fileID: 4536164769012720496, guid: 5d51fb80511e0b1419eb4d8d25fa2946, type: 3}
+  bulletSpeed: 35
+  canShoot: 0
+  fireRate: 1
+  shootRange: 60
 --- !u!50 &-2368120764104376192
 Rigidbody2D:
   serializedVersion: 5
@@ -252,3 +258,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.5555556, y: 3.5555556}
   m_EdgeRadius: 0
+--- !u!95 &909090909090909090
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250332384062263893}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f41d8aebbb9920f4499d223e98b3a2d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

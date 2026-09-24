@@ -39,6 +39,14 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
     public float avoidanceRadius = 7f;
     public float avoidanceStrength = 10f;
 
+    [Header("Disparo (solo activo en el Specialist del LV2)")]
+    public bool canShoot = false;
+    public GameObject bulletPrefab;
+    public float fireRate = 1f;
+    public float bulletSpeed = 35f;
+    public float shootRange = 60f;
+    private float fireTimer = 0f;
+
     private bool isWaiting = true;
     private float initialTimer = 0f;
 
@@ -88,6 +96,8 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
 
         float dist = Vector2.Distance(transform.position, player.position);
 
+        HandleLookAtPlayer();
+
         if (dist <= visionRange && !isSoundActive)
         {
             isSoundActive = true;
@@ -96,6 +106,14 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         else if (dist > visionRange && isSoundActive)
         {
             isSoundActive = false;
+        }
+
+        // Disparo: SOLO si está habilitado, y mientras ronda (no embiste, ni en el viento previo)
+        fireTimer += Time.deltaTime;
+        if (canShoot && bulletPrefab != null && !isDashing && !IsCharging && fireTimer >= fireRate && dist <= shootRange)
+        {
+            ShootAtPlayer();
+            fireTimer = 0f;
         }
 
         if (dist <= dashRange && canDash && !isDashing)
@@ -151,15 +169,15 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         canDash = false;
 
         // ACTIVAR PREPARACION
-        AstroSpecialistAnimator.SetBool("EstaPreparandose", true);
+        SetAnimatorBool("EstaPreparandose", true);
         IsCharging = true;
 
         // Pequeño delay opcional
         yield return new WaitForSeconds(0.3f);
 
         // ACTIVAR EMBISTE
-        AstroSpecialistAnimator.SetBool("EstaPreparandose", false);
-        AstroSpecialistAnimator.SetBool("Estaembistiendo", true);
+        SetAnimatorBool("EstaPreparandose", false);
+        SetAnimatorBool("Estaembistiendo", true);
 
         isDashing = true;
 
@@ -177,11 +195,29 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         rb.linearVelocity = Vector2.zero;
         isDashing = false;
 
-        AstroSpecialistAnimator.SetBool("Estaembistiendo", false);
+        SetAnimatorBool("Estaembistiendo", false);
         IsCharging = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void HandleLookAtPlayer()
+    {
+        if (player == null) return;
+
+        Vector2 dir = player.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
+    }
+
+    private void SetAnimatorBool(string parameter, bool value)
+    {
+        if (AstroSpecialistAnimator != null)
+        {
+            AstroSpecialistAnimator.SetBool(parameter, value);
+        }
     }
 
     private void PlaySpecialSound()
@@ -189,6 +225,25 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.SpecialSound != null)
         {
             Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.SpecialSound, transform.position);
+        }
+    }
+
+    private void ShootAtPlayer()
+    {
+        if (player == null || bulletPrefab == null) return;
+
+        if (Level1SoundManager.Instance != null && Level1SoundManager.Instance.AstroShoot != null)
+        {
+            Level1SoundManager.Instance.PlayClip(Level1SoundManager.Instance.AstroShoot, transform.position);
+        }
+
+        Vector3 direction = (player.position - transform.position).normalized;
+        GameObject bala = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rbBullet = bala.GetComponent<Rigidbody2D>();
+
+        if (rbBullet != null)
+        {
+            rbBullet.linearVelocity = direction * bulletSpeed;
         }
     }
 

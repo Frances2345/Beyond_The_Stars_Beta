@@ -10,6 +10,8 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
 
     public float damageToPlayer = 170f;
 
+    [SerializeField] private GameObject specialistPrefab;
+
     public bool IsAlive => currentHealth > 0;
     public event Action OnDied;
 
@@ -102,11 +104,26 @@ public class EnemyPatrol : MonoBehaviour, IDamageable
                 damageableTarget.TakeDamage(damageToPlayer);
                 Debug.Log("MAS CUIDADOSO LA SIGUIENTE, QUE NO LA PUEDES CONTAR");
             }
+            SpawnSpecialist();
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Limits"))
         {
+            SpawnSpecialist();
             Destroy(gameObject);
+        }
+    }
+
+    private void SpawnSpecialist()
+    {
+        if (specialistPrefab == null) return;
+
+        GameObject specialist = Instantiate(specialistPrefab, transform.position, Quaternion.identity);
+
+        AstroSpecialist specialistScript = specialist.GetComponent<AstroSpecialist>();
+        if (specialistScript != null)
+        {
+            specialistScript.canShoot = true;
         }
     }
 
