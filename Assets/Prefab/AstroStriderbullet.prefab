@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 350
+  splitForceMultiplier: 0.08
   knockbackForce: 240
   absorbHits: 7
   TimeDestroy: 7

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f817bf704759f074785bf358bb0a0067, type: 3}
   m_Name: AsteroidFury3
   m_EditorClassIdentifier: 
-  health: 3000
+  health: 6000
   damageToPlayer: 100
   baseSpeed: 0.8
   scoreValue: 10000

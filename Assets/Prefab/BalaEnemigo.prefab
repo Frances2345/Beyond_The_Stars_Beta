@@ -180,4 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 15
+  splitForceMultiplier: 0.7
   TimeDestroy: 5

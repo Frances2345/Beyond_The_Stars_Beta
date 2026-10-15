@@ -5,6 +5,9 @@ public class BulletPlayer : MonoBehaviour, IAttackable
 {
     [SerializeField] private float damageAmount = 15;
 
+    // Cuánto empujan los fragmentos al romper un asteroide (más bajo = menos vuelo).
+    [SerializeField] private float splitForceMultiplier = 0.7f;
+
     public string IgnoreTag = "Player";
 
     public float DamageAmount => damageAmount;
@@ -57,7 +60,16 @@ public class BulletPlayer : MonoBehaviour, IAttackable
 
         if (target != null)
         {
-            target.TakeDamage(DamageAmount);
+            ISplitForceDamageable splitTarget = collision.GetComponent<ISplitForceDamageable>();
+            if (splitTarget != null)
+            {
+                splitTarget.TakeDamage(DamageAmount, splitForceMultiplier);
+            }
+            else
+            {
+                target.TakeDamage(DamageAmount);
+            }
+
             Destroy(gameObject);
             return;
         }

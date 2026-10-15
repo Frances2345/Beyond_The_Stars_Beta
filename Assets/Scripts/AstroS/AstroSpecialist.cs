@@ -39,6 +39,11 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
     public float avoidanceRadius = 7f;
     public float avoidanceStrength = 10f;
 
+    [Header("Romperse asteroides con el dash")]
+    public float dashAsteroidDamage = 100f;
+    public float dashAsteroidSplitMultiplier = 0.5f;
+    public float dashAsteroidBreakRadius = 1.5f;
+
     [Header("Disparo (solo activo en el Specialist del LV2)")]
     public bool canShoot = false;
     public GameObject bulletPrefab;
@@ -187,6 +192,7 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         while (timer < dashDuration)
         {
             rb.linearVelocity = dashDirection * dashSpeed;
+            BreakSmallAsteroidsInPath();
             timer += Time.deltaTime;
             yield return null;
         }
@@ -200,6 +206,23 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    // Rompe asteroides pequeños que atraviesa durante el dash
+    private void BreakSmallAsteroidsInPath()
+    {
+        if (dashAsteroidBreakRadius <= 0f) return;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dashAsteroidBreakRadius);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit == null) continue;
+
+            IDashBreakable breakable = hit.GetComponent<IDashBreakable>();
+            if (breakable == null || !breakable.CanBeBrokenByDash) continue;
+
+            breakable.BreakByDash(dashAsteroidDamage, dashAsteroidSplitMultiplier);
+        }
     }
 
     private void HandleLookAtPlayer()

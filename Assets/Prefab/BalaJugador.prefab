@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 24
+  splitForceMultiplier: 0.9
   IgnoreTag: Player
   TimeDestroy: 5
   shootSoundClip: {fileID: 8300000, guid: 2bb18942666046746b57f3bab9243f1a, type: 3}

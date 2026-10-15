@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.coplaydev.unity-mcp": "file:C:/Users/Alumno/Downloads/unity-mcp-10.0.0/unity-mcp-10.0.0/MCPForUnity",
+    "com.coplaydev.unity-mcp": "file:C:/Users/Alumno/Downloads/unity-mcp-10.3.0/unity-mcp-10.3.0/MCPForUnity",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.feature.2d": "2.0.2",
     "com.unity.feature.cinematic": "1.0.0",

@@ -51,8 +51,14 @@ public class Player1 : MonoBehaviour, IDamageable
     public float dashDuration = 0.15f;
     public float dashCooldown = 1f;
 
+    [Header("Dash contra asteroides")]
+    public float dashDamage = 100f;
+    public float dashSplitForceMultiplier = 0.5f;
+
     private bool isDashing = false;
     private bool isOnCooldown = false;
+
+    public bool IsDashing => isDashing;
 
     [Header("Sprint")]
     public float sprintMultiplier = 1.8f;

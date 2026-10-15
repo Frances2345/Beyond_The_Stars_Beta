@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f817bf704759f074785bf358bb0a0067, type: 3}
   m_Name: Small Asteroid
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
   damageToPlayer: 0
   baseSpeed: 0.8
   scoreValue: 2500

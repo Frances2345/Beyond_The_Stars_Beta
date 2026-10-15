@@ -10,27 +10,7 @@ public class CollisionIgnorer : MonoBehaviour
     void UpdateCollisionRules()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
         GameObject[] limits = GameObject.FindGameObjectsWithTag("Limits");
-
-        // Enemy con Asteroid
-        foreach (GameObject enemy in enemies)
-        {
-            Collider2D[] enemyCols = enemy.GetComponents<Collider2D>();
-            if (enemyCols.Length == 0) continue;
-
-            foreach (GameObject asteroid in asteroids)
-            {
-                Collider2D[] asteroidCols = asteroid.GetComponents<Collider2D>();
-                foreach (Collider2D asteroidCol in asteroidCols)
-                {
-                    foreach (Collider2D enemyCol in enemyCols)
-                    {
-                        Physics2D.IgnoreCollision(enemyCol, asteroidCol, true);
-                    }
-                }
-            }
-        }
 
         // Enemy entre Enemy
         for (int i = 0; i < enemies.Length; i++)

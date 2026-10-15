@@ -4,6 +4,9 @@ public class BulletEnemy : MonoBehaviour, IAttackable
 {
     [SerializeField] private float damageAmount = 15;
 
+    // Cuánto empujan los fragmentos al romper un asteroide (más bajo = menos vuelo).
+    [SerializeField] private float splitForceMultiplier = 0.5f;
+
     public float knockbackForce = 0f;
 
     public int absorbHits = 1;
@@ -38,6 +41,14 @@ public class BulletEnemy : MonoBehaviour, IAttackable
         // Las balas de enemigos tambien dañan asteroides
         if (collision.CompareTag("Asteroid"))
         {
+            ISplitForceDamageable splitAsteroid = collision.GetComponent<ISplitForceDamageable>();
+            if (splitAsteroid != null)
+            {
+                splitAsteroid.TakeDamage(DamageAmount, splitForceMultiplier);
+                Destroy(gameObject);
+                return;
+            }
+
             IDamageable asteroid = collision.GetComponent<IDamageable>();
             if (asteroid != null)
             {

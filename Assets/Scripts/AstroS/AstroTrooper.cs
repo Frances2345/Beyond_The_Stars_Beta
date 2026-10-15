@@ -63,6 +63,19 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     private Collider2D trooperCollider;
 
     // ----------------------------
+    // DASH ROMPE ASTEROIDES
+    // ----------------------------
+    public float dashAsteroidDamage = 100f;
+    public float dashAsteroidSplitMultiplier = 0.5f;
+
+    // ----------------------------
+    // ESQUIVA DE ASTEROIDES
+    // ----------------------------
+    public float avoidanceDistance = 8f;
+    public float avoidanceRadius = 3f;
+    public float avoidanceStrength = 2f;
+
+    // ----------------------------
     // DISTANCIA Y KITING
     // ----------------------------
     public float preferredDistance = 4f;
@@ -291,13 +304,13 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         {
             // Muy lejos -> acercarse, MÁS RÁPIDO cuanto más lejos esté el jugador
             float speed = GetApproachSpeed(distanceToPlayer);
-            rb.linearVelocity = dirToPlayer * speed;
+            rb.linearVelocity = SteerAroundAsteroids(dirToPlayer) * speed;
         }
         else if (diff < -preferredMargin)
         {
             // Muy cerca -> huir, MÁS RÁPIDO cuanto más cerca esté el jugador
             float speed = Mathf.Clamp(-diff * fleeSpeedPerUnit, minFleeSpeed, retreatSpeed);
-            rb.linearVelocity = dirAway * speed;
+            rb.linearVelocity = SteerAroundAsteroids(dirAway) * speed;
         }
         else
         {
@@ -313,6 +326,39 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         return Mathf.Clamp(diff * approachSpeedPerUnit, minApproachSpeed, maxApproachSpeed);
     }
 
+    // Esquiva asteroides: desvía la dirección de movimiento para rodearlos
+    private Vector2 SteerAroundAsteroids(Vector2 moveDir)
+    {
+        Vector2 dir = moveDir.normalized;
+        if (dir.sqrMagnitude < 0.001f) return moveDir;
+
+        Vector2 steer = Vector2.zero;
+        float step = Mathf.Max(avoidanceRadius * 0.5f, 0.5f);
+
+        for (float d = step; d <= avoidanceDistance; d += step)
+        {
+            Vector2 point = (Vector2)transform.position + dir * d;
+            Collider2D[] hits = Physics2D.OverlapCircleAll(point, avoidanceRadius);
+
+            foreach (Collider2D hit in hits)
+            {
+                if (hit == null || hit.transform == transform) continue;
+                if (hit.GetComponent<IDashBreakable>() == null) continue;
+
+                Vector2 toAst = (Vector2)hit.transform.position - (Vector2)transform.position;
+                if (toAst.sqrMagnitude < 0.001f) continue;
+
+                Vector2 tangent = new Vector2(-toAst.y, toAst.x).normalized;
+                float side = Vector2.Dot(tangent, dir) >= 0f ? 1f : -1f;
+                steer += tangent * side;
+            }
+        }
+
+        if (steer.sqrMagnitude < 0.001f) return dir;
+
+        return (dir + steer.normalized * avoidanceStrength).normalized;
+    }
+
     // ANMACION DEL DASH
     // ----------------------------
     public void FixedUpdate()
@@ -323,22 +369,33 @@ public class AstroTrooper : MonoBehaviour, IDamageable
             TrooperAnimator.SetBool("IsShooting", IsShooting);
         }
 
-        if (isDashing && !hitPlayerThisDash && rb.linearVelocity.sqrMagnitude > 0.01f)
+        if (isDashing && rb.linearVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 dir = rb.linearVelocity.normalized;
             float checkRadius = 1.5f;
             Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + dir * 1f, checkRadius);
             foreach (Collider2D hit in hits)
             {
-                if (!hit.CompareTag("Player")) continue;
+                if (hit == null) continue;
 
-                Player1 playerHit = hit.GetComponent<Player1>();
-                if (playerHit == null) continue;
+                // Golpear al jugador (solo una vez por dash)
+                if (!hitPlayerThisDash && hit.CompareTag("Player"))
+                {
+                    Player1 playerHit = hit.GetComponent<Player1>();
+                    if (playerHit != null)
+                    {
+                        hitPlayerThisDash = true;
+                        playerHit.TakeDamage(dashDamage);
+                        playerHit.ApplyKnockback(dir, dashKnockbackForce);
+                    }
+                }
 
-                hitPlayerThisDash = true;
-                playerHit.TakeDamage(dashDamage);
-                playerHit.ApplyKnockback(dir, dashKnockbackForce);
-                break;
+                // El dash rompe asteroides pequeños a su paso
+                IDashBreakable breakable = hit.GetComponent<IDashBreakable>();
+                if (breakable != null && breakable.CanBeBrokenByDash)
+                {
+                    breakable.BreakByDash(dashAsteroidDamage, dashAsteroidSplitMultiplier);
+                }
             }
         }
     }
