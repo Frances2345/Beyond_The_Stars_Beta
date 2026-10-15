@@ -24,6 +24,9 @@ public class AstroTrooper : MonoBehaviour, IDamageable
     private GameObject jugador;
     private Rigidbody2D rb;
 
+    [Header("Escudo del jugador (bala)")]
+    public float shieldDamage = 5f;
+
     public float moveSpeed = 2f;
     public float bulletSpeed = 8f;
     public float fireRate = 1.5f;
@@ -461,6 +464,12 @@ public class AstroTrooper : MonoBehaviour, IDamageable
         if (rbBullet != null)
         {
             rbBullet.linearVelocity = direction * bulletSpeed;
+        }
+
+        BulletEnemy bulletScript = bala.GetComponent<BulletEnemy>();
+        if (bulletScript != null)
+        {
+            bulletScript.shieldDamage = shieldDamage;
         }
 
         IsShooting = false;

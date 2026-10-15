@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerSelector.unity
     guid: 719d9c8ea4d614a4e8f7b1c298cbd09c
+  - enabled: 1
+    path: Assets/Scenes/Infinito Mode.unity
+    guid: 9574559ee1554138852acf4ef8b0ed27
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 1d921f21816c9aa44a68136f01177887, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

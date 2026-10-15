@@ -9,6 +9,11 @@ public class ModesSystem : MonoBehaviour
         SceneManager.LoadScene("PlayerSelector");
     }
 
+    public void Infinito()
+    {
+        SceneManager.LoadScene("Infinito Mode");
+    }
+
     public void Rush()
     {
         Debug.Log("proximamente");

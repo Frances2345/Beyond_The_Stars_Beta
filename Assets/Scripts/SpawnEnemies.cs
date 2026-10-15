@@ -19,9 +19,28 @@ public class SpawnEnemies : MonoBehaviour
     public float AstroStriderCooldown = 10f;
     public float AstroStriderTimer = 0f;
 
+    private GameObject astroTrooperTemplate;
+    private GameObject astroSpecialistTemplate;
+    private GameObject astroStriderTemplate;
+
     void Start()
     {
-        
+        astroTrooperTemplate = MakeTemplate(astroTrooperPrefab);
+        astroSpecialistTemplate = MakeTemplate(AstroSpecialistPrefab);
+        astroStriderTemplate = MakeTemplate(AstroStriderPrefab);
+    }
+
+    GameObject MakeTemplate(GameObject source)
+    {
+        if (source == null)
+        {
+            return null;
+        }
+
+        GameObject template = Instantiate(source);
+        template.name = source.name + "_SpawnTemplate";
+        template.SetActive(false);
+        return template;
     }
 
     void Update()
@@ -36,21 +55,21 @@ public class SpawnEnemies : MonoBehaviour
         astroTrooperTimer += dt;
         if(astroTrooperTimer >= astroTrooperCooldown)
         {
-            SpawnEnemy(astroTrooperPrefab);
+            SpawnEnemy(astroTrooperTemplate);
             astroTrooperTimer = 0f;
         }
 
         AstroSpecialistTimer += dt;
         if(AstroSpecialistTimer >=  AstroSpecialistCooldown)
         {
-            SpawnEnemy(AstroSpecialistPrefab);
+            SpawnEnemy(astroSpecialistTemplate);
             AstroSpecialistTimer = 0f;
         }
 
         AstroStriderTimer += dt;
         if(AstroStriderTimer >= AstroStriderCooldown)
         {
-            SpawnEnemy(AstroStriderPrefab);
+            SpawnEnemy(astroStriderTemplate);
             AstroStriderTimer = 0f;
         }
     }
@@ -101,7 +120,8 @@ public class SpawnEnemies : MonoBehaviour
                 break;
         }
 
-        Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+        GameObject clone = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+        clone.SetActive(true);
         Debug.Log("Ha llegado un " + prefabToSpawn.name + " .");
 
     }

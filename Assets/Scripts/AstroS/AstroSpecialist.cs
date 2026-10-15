@@ -50,6 +50,7 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
     public float fireRate = 1f;
     public float bulletSpeed = 35f;
     public float shootRange = 60f;
+    public float shieldDamage = 150f;
     private float fireTimer = 0f;
 
     private bool isWaiting = true;
@@ -267,6 +268,12 @@ public class AstroSpecialist : MonoBehaviour, IDamageable
         if (rbBullet != null)
         {
             rbBullet.linearVelocity = direction * bulletSpeed;
+        }
+
+        BulletEnemy bulletScript = bala.GetComponent<BulletEnemy>();
+        if (bulletScript != null)
+        {
+            bulletScript.shieldDamage = shieldDamage;
         }
     }
 

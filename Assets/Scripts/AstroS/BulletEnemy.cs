@@ -9,8 +9,14 @@ public class BulletEnemy : MonoBehaviour, IAttackable
 
     public float knockbackForce = 0f;
 
+    [Header("Interaccion con el escudo del jugador")]
+    public float shieldDamage = 5f;
+    public bool breakShield = false;
+    public bool applyKnockbackOnShield = false;
+
     public int absorbHits = 1;
     private int absorbHitsLeft = 1;
+    private bool consumed = false;
 
     public float DamageAmount => damageAmount;
     public float TimeDestroy = 5f;
@@ -27,6 +33,8 @@ public class BulletEnemy : MonoBehaviour, IAttackable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (consumed) return;
+
         // Las balas del jugador solo desgastan esta bala, no la destruyen de una
         if (collision.CompareTag("PlayerBullet"))
         {
@@ -58,10 +66,21 @@ public class BulletEnemy : MonoBehaviour, IAttackable
             return;
         }
 
+        // Escudo del jugador: el escudo intercepta la bala
+        PlayerShield shield = collision.GetComponentInParent<PlayerShield>();
+        if (shield != null && shield.IsBlocking)
+        {
+            consumed = true;
+            shield.OnBulletHit(this);
+            Destroy(gameObject);
+            return;
+        }
+
         IDamageable target = collision.GetComponent<IDamageable>();
 
         if (target != null && collision.CompareTag("Player"))
         {
+            consumed = true;
             target.TakeDamage(DamageAmount);
             ApplyKnockback(collision);
             Destroy(gameObject);
@@ -70,8 +89,21 @@ public class BulletEnemy : MonoBehaviour, IAttackable
 
         if(!collision.CompareTag("Enemy"))
         {
+            consumed = true;
             Destroy(gameObject);
         }
+    }
+
+    public Vector2 GetTravelDirection(Vector3 fromPosition)
+    {
+        Rigidbody2D bulletRb = GetComponent<Rigidbody2D>();
+        if (bulletRb != null && bulletRb.linearVelocity.sqrMagnitude > 0.001f)
+            return bulletRb.linearVelocity.normalized;
+
+        Vector2 toTarget = (Vector2)fromPosition - (Vector2)transform.position;
+        if (toTarget.sqrMagnitude > 0.001f) return toTarget.normalized;
+
+        return Vector2.right;
     }
 
     private void ApplyKnockback(Collider2D collision)

@@ -56,6 +56,12 @@ public class BulletPlayer : MonoBehaviour, IAttackable
             return;
         }
 
+        // La bala del jugador atraviesa su propio escudo.
+        if (collision.GetComponentInParent<PlayerShield>() != null)
+        {
+            return;
+        }
+
         IDamageable target = collision.GetComponent<IDamageable>();
 
         if (target != null)
